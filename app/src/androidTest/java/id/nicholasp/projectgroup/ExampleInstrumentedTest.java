@@ -1,4 +1,4 @@
-package com.adhito.inixindo_task_group;
+package id.nicholasp.projectgroup;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.adhito.inixindo_task_group", appContext.getPackageName());
+        assertEquals("id.nicholasp.projectgroup", appContext.getPackageName());
     }
 }

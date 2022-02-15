@@ -1,4 +1,4 @@
-package com.adhito.inixindo_task_group;
+package id.nicholasp.projectgroup;
 
 import org.junit.Test;
 
