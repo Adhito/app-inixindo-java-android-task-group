@@ -14,6 +14,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
     // Test
     // Test Dhito
+    // Test Dhito 2
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
