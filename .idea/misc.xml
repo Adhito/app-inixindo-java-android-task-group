@@ -4,12 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/app-inixindo-task-group/app/src/main/res/drawable/bottom_nav_selected.xml" value="0.1265" />
+        <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/app-inixindo-task-group/app/src/main/res/drawable/cardviewstyle.xml" value="0.1265" />
         <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/app-inixindo-task-group/app/src/main/res/layout/activity_main.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/app-inixindo-task-group/app/src/main/res/layout/fragment_e_statement.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/app-inixindo-task-group/app/src/main/res/layout/fragment_more.xml" value="0.2604166666666667" />
         <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/app-inixindo-task-group/app/src/main/res/layout/fragment_portofolio.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/app-inixindo-task-group/app/src/main/res/layout/fragment_products.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/app-inixindo-task-group/app/src/main/res/layout/fragment_profile.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/app-inixindo-task-group/app/src/main/res/layout/list_produk_layout.xml" value="0.264" />
         <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/app-inixindo-task-group/app/src/main/res/menu/bottom_nav_items.xml" value="0.27447916666666666" />
       </map>
     </option>
