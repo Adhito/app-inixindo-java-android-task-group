@@ -3,8 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Group/app/src/main/res/layout/activity_main.xml" value="0.1265625" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/app-inixindo-task-group2/app/src/main/res/layout/activity_main.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/app-inixindo-task-group/app/src/main/res/drawable/bottom_nav_selected.xml" value="0.1265" />
+        <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/app-inixindo-task-group/app/src/main/res/layout/activity_main.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/app-inixindo-task-group/app/src/main/res/menu/bottom_nav_items.xml" value="0.27447916666666666" />
       </map>
     </option>
   </component>

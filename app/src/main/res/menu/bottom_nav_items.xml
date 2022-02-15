@@ -3,25 +3,25 @@
 
 
     <item
-        android:id="@+id/home_menu"
+        android:id="@+id/nav_portofolio"
         android:title="Portofolio"
         android:icon="@android:drawable/ic_dialog_info"/>
 
     <item
-        android:id="@+id/search_menu"
+        android:id="@+id/nav_profile"
         android:title="Profile"
         android:icon="@android:drawable/ic_dialog_info"/>
 
     <item
-        android:id="@+id/favorite_menu"
+        android:id="@+id/nav_product"
         android:title="Products"
         android:icon="@android:drawable/ic_dialog_info"/>
     <item
-        android:id="@+id/account_menu"
-        android:title="News"
+        android:id="@+id/nav_estatement"
+        android:title="E-Statement"
         android:icon="@android:drawable/ic_dialog_info"/>
     <item
-        android:id="@+id/menu"
+        android:id="@+id/nav_more"
         android:title="More"
         android:icon="@android:drawable/ic_dialog_info"/>
 
