@@ -12,7 +12,8 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    //test
+    // Test
+    // Test Dhito
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
