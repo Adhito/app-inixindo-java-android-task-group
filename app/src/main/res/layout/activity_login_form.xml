@@ -157,6 +157,8 @@
         android:layout_marginStart="120dp"
         android:layout_marginTop="39dp"
         android:layout_marginEnd="120dp"
+
+        android:background="@android:color/transparent"
         android:text="Reset Password"
         android:textAllCaps="false"
         android:textSize="15sp"

@@ -13,6 +13,9 @@
         android:theme="@style/Theme.ProjectGroup"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".SignUpActivity"
+            android:exported="false" />
+        <activity
             android:name=".LoginFormActivity"
             android:exported="false" />
         <activity
