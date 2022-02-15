@@ -15,4 +15,5 @@
     // TODO: 22/02/18
     <color name="colorNavigationIcon">#dae9f6</color>
     <color name="colorNavigationText">#ffffff</color>
+    <color name="maybankYellowCorporate">#FFC600</color>
 </resources>
