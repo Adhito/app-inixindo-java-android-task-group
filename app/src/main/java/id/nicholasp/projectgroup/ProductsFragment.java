@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -24,10 +25,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ProductsFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class ProductsFragment extends Fragment {
     private ProgressDialog loading;
     private String JSON_STRING;
     ListView listview;
+    Button btn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,23 +39,15 @@ public class ProductsFragment extends Fragment implements View.OnClickListener, 
         View view = inflater.inflate(R.layout.fragment_products, container, false);
 
         listview = view.findViewById(R.id.listViewProduct);
-        ListView lv = (ListView) view.findViewById(R.id.listViewProduct);
+        getJsonData();
 
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
-
-                Log.d("ListView: ", "Product Clicked");
-//                Intent myIntent = new Intent(getActivity(), ProductDetailActivity.class);
-//                HashMap<String, String> map = (HashMap) parent.getItemAtPosition(i);
-//                String id_product = map.get(Configuration.TAG_JSON_ID_PRODUCT).toString();
-//                myIntent.putExtra(Configuration.PGW_ID, id_product);
-//                Log.d("ProductsFragment Log", id_product);
-//                startActivity(myIntent);
-
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getContext(), "Test", Toast.LENGTH_SHORT).show();
             }
         });
-        getJsonData();
+
 
         return view;
     }
@@ -97,12 +91,14 @@ public class ProductsFragment extends Fragment implements View.OnClickListener, 
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject object = jsonArray.getJSONObject(i);
+                String id_produk = object.getString("id_produk");
                 String seri_produk = object.getString("seri_produk");
                 String yield = object.getString("yield");
                 String jatuh_tempo = object.getString("jatuh_tempo");
                 String nilai_unit = object.getString("nilai_unit");
 
                 HashMap<String, String> produk = new HashMap<>();
+                produk.put("id_produk", id_produk);
                 produk.put("seri_produk", seri_produk);
                 produk.put("yield", yield);
                 produk.put("jatuh_tempo", jatuh_tempo);
@@ -115,21 +111,12 @@ public class ProductsFragment extends Fragment implements View.OnClickListener, 
 
         // adapter untuk meletakkan array list kedalam list view
         ListAdapter adapter = new SimpleAdapter(getContext(), list, R.layout.list_produk_layout,
-                new String[]{"seri_produk", "jatuh_tempo", "yield", "nilai_unit"},
-                new int[]{R.id.txt_nama_produk, R.id.txt_jatuh_tempo, R.id.txt_yield, R.id.txt_nilai_unit}
+                new String[]{"id_produk","seri_produk", "jatuh_tempo", "yield", "nilai_unit"},
+                new int[]{R.id.txt_id_produk, R.id.txt_nama_produk, R.id.txt_jatuh_tempo, R.id.txt_yield, R.id.txt_nilai_unit}
         );
 
         listview.setAdapter(adapter);
-    }
 
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        // Event-handling when one of the list is selected
-        Log.d("InstrukturFragment Log", "clicked");
-    }
-
-    @Override
-    public void onClick(View view) {
 
     }
 }

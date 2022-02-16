@@ -23,15 +23,10 @@
             android:focusable="false"
             android:clickable="false" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/cardviewstyle"
-            android:orientation="horizontal">
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cardviewstyle"
                 android:orientation="vertical">
 
                 <TextView
@@ -64,7 +59,9 @@
                         android:textAlignment="textStart"
                         android:textColor="#000000"
                         android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:focusable="false"
+                        android:clickable="false"/>
 
                     <Button
                         android:id="@+id/button"
@@ -75,7 +72,8 @@
                         android:text="Beli"
                         android:textSize="11sp"
                         android:textColor="@color/white"
-                        android:backgroundTint="@color/black"/>
+                        android:backgroundTint="@color/black"
+                        android:focusable="false"/>
 
                 </LinearLayout>
 
@@ -144,8 +142,6 @@
                         android:focusable="false"
                         android:clickable="false"/>
                 </LinearLayout>
-
             </LinearLayout>
-        </LinearLayout>
     </LinearLayout>
 </layout>
