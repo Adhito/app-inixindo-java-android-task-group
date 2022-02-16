@@ -30,7 +30,7 @@ public class PortofolioFragment extends Fragment {
     public static final String USER_KEY = "user_key";
 
     SharedPreferences sharedpreferences;
-    String myStr;
+    String myStr, sendBalance;
     FragmentPortofolioBinding binding;
 
     @Override
@@ -54,7 +54,9 @@ public class PortofolioFragment extends Fragment {
             @Override
             public void onClick(View v) {
 //                Toast.makeText(getActivity(), "CardView Clicked", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getActivity(),DetailPortofolioActivity.class));
+                Intent myIntent = new Intent(getActivity(), DetailPortofolioActivity.class);
+                myIntent.putExtra("keyBalance", sendBalance);
+                startActivity(myIntent);
             }
         });
 
@@ -101,6 +103,7 @@ public class PortofolioFragment extends Fragment {
             String nama = object.getString(ConfigurationPortofolio.KEY_LOG_NAMA);
             String balance = object.getString(ConfigurationPortofolio.KEY_LOG_BALANCE);
             String total = object.getString(ConfigurationPortofolio.KEY_LOG_TOTAL);
+            sendBalance = object.getString(ConfigurationPortofolio.KEY_LOG_TOTAL);
 
             binding.txtRNama.setText(nama);
             binding.txtRSaldo.setText("Rp. "+balance);

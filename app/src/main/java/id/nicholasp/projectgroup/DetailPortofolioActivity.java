@@ -7,6 +7,7 @@ import id.nicholasp.projectgroup.databinding.ActivityLoginFormBinding;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -31,7 +32,7 @@ public class DetailPortofolioActivity extends AppCompatActivity {
     // variable for shared preferences.
     SharedPreferences sharedpreferences;
 
-    String myStr,JSON_STRING;
+    String myStr,JSON_STRING,getBalance;
     ActivityDetailPortofolioBinding binding;
 
     @Override
@@ -41,7 +42,13 @@ public class DetailPortofolioActivity extends AppCompatActivity {
 
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         myStr = sharedpreferences.getString(USER_KEY, null);
-        
+
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        getBalance = extras.getString("keyBalance");
+
+        binding.txtDBalance.setText("Rp. "+getBalance);
+
         getJSON();
 
     }
