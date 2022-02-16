@@ -1,6 +1,7 @@
 package id.nicholasp.projectgroup;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import id.nicholasp.projectgroup.databinding.ActivityDetailPortofolioBinding;
 import id.nicholasp.projectgroup.databinding.ActivityLoginFormBinding;
@@ -35,10 +36,17 @@ public class DetailPortofolioActivity extends AppCompatActivity {
     String myStr,JSON_STRING,getBalance;
     ActivityDetailPortofolioBinding binding;
 
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail_portofolio);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         myStr = sharedpreferences.getString(USER_KEY, null);
@@ -126,5 +134,11 @@ public class DetailPortofolioActivity extends AppCompatActivity {
                 new int[]{R.id.txt_r_seri, R.id.txt_r_prdk,R.id.txt_r_unit, R.id.txt_r_harga}
         );
         binding.lvDtlPortofolio.setAdapter(adapter);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

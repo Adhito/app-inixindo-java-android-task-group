@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // kita set default nya Home Fragment
+        getSupportActionBar().setTitle("Portofolio");
         loadFragment(new PortofolioFragment());
         // inisialisasi BottomNavigaionView
         BottomNavigationView bottomNavigationView = findViewById(R.id.bn_main);
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment = null;
         switch (menuItem.getItemId()){
             case R.id.nav_portofolio:
+                getSupportActionBar().setTitle("Portofolio");
                 fragment = new PortofolioFragment();
                 break;
             case R.id.nav_profile:

@@ -1,64 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".DetailPortofolioActivity"
-    android:background="@drawable/bg_detail_porto">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".DetailPortofolioActivity">
 
-    <LinearLayout
-        android:layout_width="350dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="70dp"
-        android:background="#fbb034"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="sans-serif"
-            android:text="Total Obligasi"
-            android:textAlignment="center"
-            android:textColor="#F8E5E5"
-            android:textSize="17sp" />
-
-        <TextView
-            android:id="@+id/txt_d_balance"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:fontFamily="sans-serif-black"
-            android:text="RP 10.000"
-            android:textAlignment="center"
-            android:textColor="#FFF"
-            android:textSize="25sp" />
-
-    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="12dp">
+        android:orientation="vertical">
 
-        <FrameLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:background="@drawable/home_toolbar"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:title="Detail Portofolio" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_detail_porto"
+            android:orientation="vertical">
 
-            <ListView
-                android:id="@+id/lvDtlPortofolio"
+            <LinearLayout
+                android:layout_width="350dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="70dp"
+                android:background="#fbb034"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Total Obligasi"
+                    android:textAlignment="center"
+                    android:textColor="#F8E5E5"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/txt_d_balance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="sans-serif-black"
+                    android:text="RP 10.000"
+                    android:textAlignment="center"
+                    android:textColor="#FFF"
+                    android:textSize="25sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="515dp" />
-        </FrameLayout>
-    </LinearLayout>
+                android:layout_height="match_parent"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="12dp">
 
-</LinearLayout>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <ListView
+                        android:id="@+id/lvDtlPortofolio"
+                        android:layout_width="match_parent"
+                        android:layout_height="515dp" />
+                </FrameLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
 </layout>
