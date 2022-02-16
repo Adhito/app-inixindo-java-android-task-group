@@ -1,5 +1,7 @@
 package id.nicholasp.projectgroup;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -24,8 +27,10 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ProductsFragment extends Fragment {
+    private ProgressDialog loading;
     private String JSON_STRING;
     ListView listview;
+    Button btn_beli;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,17 +43,33 @@ public class ProductsFragment extends Fragment {
         getJsonData();
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getContext(), "Test", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Test List View", Toast.LENGTH_SHORT).show();
+                Intent myIntent = new Intent(getActivity(), ProductDetailActivity.class);
+                HashMap<String, String> map = (HashMap) parent.getItemAtPosition(position);
+                String id_product = map.get(Configuration.TAG_JSON_ID_PRODUCT).toString();
+                myIntent.putExtra(Configuration.PGW_ID, id_product);
+                Log.d("Clicked Product No :", id_product);
+                startActivity(myIntent);
             }
+
         });
 
-
-
+//        View view2 = inflater.inflate(R.layout.list_produk_layout, container, false);
+//        btn_beli = view2.findViewById(R.id.button);
+//        btn_beli.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(getContext(), "Test List View", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         return view;
     }
+
 
     public void getJsonData() {
         class GetJsonData extends AsyncTask<Void, Void, String> {
@@ -91,9 +112,9 @@ public class ProductsFragment extends Fragment {
                 JSONObject object = jsonArray.getJSONObject(i);
                 String id_produk = object.getString("id_produk");
                 String seri_produk = object.getString("seri_produk");
-                String yield = object.getString("yield") + "%";
+                String yield = object.getString("yield");
                 String jatuh_tempo = object.getString("jatuh_tempo");
-                String nilai_unit = "Rp " + object.getString("nilai_unit");
+                String nilai_unit = object.getString("nilai_unit");
 
                 HashMap<String, String> produk = new HashMap<>();
                 produk.put("id_produk", id_produk);
@@ -114,6 +135,7 @@ public class ProductsFragment extends Fragment {
         );
 
         listview.setAdapter(adapter);
+
 
     }
 }

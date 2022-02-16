@@ -3,20 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/app-inixindo-task-group/app/src/main/res/drawable/bg_input.xml" value="0.1265" />
-        <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/app-inixindo-task-group/app/src/main/res/drawable/bottom_nav_selected.xml" value="0.1265" />
-        <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/app-inixindo-task-group/app/src/main/res/drawable/cardviewstyle.xml" value="0.1265" />
-        <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/app-inixindo-task-group/app/src/main/res/drawable/home_shape.xml" value="0.1265" />
-        <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/app-inixindo-task-group/app/src/main/res/drawable/home_toolbar.xml" value="0.1265" />
-        <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/app-inixindo-task-group/app/src/main/res/layout/activity_login_form.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/app-inixindo-task-group/app/src/main/res/layout/activity_main.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/app-inixindo-task-group/app/src/main/res/layout/fragment_e_statement.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/app-inixindo-task-group/app/src/main/res/layout/fragment_more.xml" value="0.2604166666666667" />
-        <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/app-inixindo-task-group/app/src/main/res/layout/fragment_portofolio.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/app-inixindo-task-group/app/src/main/res/layout/fragment_products.xml" value="0.2" />
-        <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/app-inixindo-task-group/app/src/main/res/layout/fragment_profile.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/app-inixindo-task-group/app/src/main/res/layout/list_produk_layout.xml" value="0.264" />
-        <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/app-inixindo-task-group/app/src/main/res/menu/bottom_nav_items.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Group/app/src/main/res/layout/activity_login_form.xml" value="0.5968819599109132" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Group/app/src/main/res/layout/activity_main.xml" value="0.1265625" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Group/app/src/main/res/layout/activity_product.xml" value="0.275" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Group/app/src/main/res/layout/activity_product_detail.xml" value="0.2574074074074074" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Group/app/src/main/res/layout/activity_sign_up.xml" value="0.24814814814814815" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Group/app/src/main/res/layout/fragment_products.xml" value="0.24814814814814815" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Group/app/src/main/res/layout/list_produk_layout.xml" value="0.275" />
         <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/app-inixindo-task-group/app/src/main/res/menu/toolbar_nav_items.xml" value="0.27447916666666666" />
       </map>
     </option>
