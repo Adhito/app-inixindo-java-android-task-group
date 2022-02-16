@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
@@ -14,6 +15,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -31,13 +34,15 @@ public class PortofolioFragment extends Fragment {
 
     SharedPreferences sharedpreferences;
     String myStr, sendBalance;
-    FragmentPortofolioBinding binding;
+    CardView cvRObligasi;
+    TextView txtRNama,txtRSaldo,txtRTotal;
+//    FragmentPortofolioBinding binding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_portofolio);
+//        binding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_portofolio);
         View view = inflater.inflate(R.layout.fragment_portofolio, container, false);
 
 //        Intent intent = getActivity().getIntent();
@@ -46,11 +51,15 @@ public class PortofolioFragment extends Fragment {
 
         sharedpreferences = getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         myStr = sharedpreferences.getString(USER_KEY, null);
+        cvRObligasi = view.findViewById(R.id.cv_r_obligasi);
+        txtRNama = view.findViewById(R.id.txt_r_nama);
+        txtRSaldo = view.findViewById(R.id.txt_r_saldo);
+        txtRTotal = view.findViewById(R.id.txt_r_total);
         Log.d("user: ", myStr);
 
         getJSON();
 
-        binding.cvRObligasi.setOnClickListener(new View.OnClickListener() {
+        cvRObligasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                Toast.makeText(getActivity(), "CardView Clicked", Toast.LENGTH_SHORT).show();
@@ -105,9 +114,9 @@ public class PortofolioFragment extends Fragment {
             String total = object.getString(ConfigurationPortofolio.KEY_LOG_TOTAL);
             sendBalance = object.getString(ConfigurationPortofolio.KEY_LOG_TOTAL);
 
-            binding.txtRNama.setText(nama);
-            binding.txtRSaldo.setText("Rp. "+balance);
-            binding.txtRTotal.setText("Rp. "+total);
+            txtRNama.setText(nama);
+            txtRSaldo.setText("Rp. "+balance);
+            txtRTotal.setText("Rp. "+total);
         } catch (Exception ex){
             ex.printStackTrace();
         }

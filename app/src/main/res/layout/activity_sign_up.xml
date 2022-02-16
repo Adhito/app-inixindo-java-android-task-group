@@ -45,8 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nama"
-                app:boxBackgroundColor="#FFF"
-                >
+                app:boxBackgroundColor="#FFF">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txt_r_name"
@@ -59,8 +58,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Email"
-                    app:boxBackgroundColor="#FFF"
-                    >
+                    app:boxBackgroundColor="#FFF">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txt_r_mail"
@@ -74,8 +72,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Username"
-                        app:boxBackgroundColor="#FFF"
-                        >
+                        app:boxBackgroundColor="#FFF">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/txt_r_user"
@@ -88,8 +85,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:hint="Password"
-                            app:boxBackgroundColor="#FFF"
-                            >
+                            app:boxBackgroundColor="#FFF">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/txt_r_pass"
