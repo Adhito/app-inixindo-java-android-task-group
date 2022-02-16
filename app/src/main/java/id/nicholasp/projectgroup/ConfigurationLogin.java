@@ -3,7 +3,7 @@ package id.nicholasp.projectgroup;
 public class ConfigurationLogin {
 
     // API URL untuk GET, GET_DETAIL, ADD, UPDATE dan DELETE
-    public static final String ip_adress = "192.168.1.101";
+    public static final String ip_adress = "192.168.190.102";
 
     // API Format Login
     public static final String URL_GET_LOGIN = String.format("http://%s/api_task_group/login/cek_login.php", ip_adress);

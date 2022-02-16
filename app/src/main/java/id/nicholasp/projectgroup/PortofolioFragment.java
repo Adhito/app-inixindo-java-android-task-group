@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -39,8 +40,8 @@ public class PortofolioFragment extends Fragment {
         binding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_portofolio);
         View view = inflater.inflate(R.layout.fragment_portofolio, container, false);
 
-        Intent intent = getActivity().getIntent();
-        Bundle extras = intent.getExtras();
+//        Intent intent = getActivity().getIntent();
+//        Bundle extras = intent.getExtras();
 //        myStr = extras.getString("keyUser");
 
         sharedpreferences = getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
@@ -48,6 +49,14 @@ public class PortofolioFragment extends Fragment {
         Log.d("user: ", myStr);
 
         getJSON();
+
+        binding.cvRObligasi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Toast.makeText(getActivity(), "CardView Clicked", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getActivity(),DetailPortofolioActivity.class));
+            }
+        });
 
         return view;
     }
@@ -94,8 +103,8 @@ public class PortofolioFragment extends Fragment {
             String total = object.getString(ConfigurationPortofolio.KEY_LOG_TOTAL);
 
             binding.txtRNama.setText(nama);
-            binding.txtRSaldo.setText(balance);
-            binding.txtRTotal.setText(total);
+            binding.txtRSaldo.setText("Rp. "+balance);
+            binding.txtRTotal.setText("Rp. "+total);
         } catch (Exception ex){
             ex.printStackTrace();
         }
