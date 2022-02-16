@@ -1,6 +1,7 @@
 package id.nicholasp.projectgroup;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -10,9 +11,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -21,19 +24,35 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ProductsFragment extends Fragment {
+public class ProductsFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
     private ProgressDialog loading;
     private String JSON_STRING;
     ListView listview;
-    String url = "http://192.168.1.101/api_task_group/produk/get_all_produk.php";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_products, container, false);
 
         listview = view.findViewById(R.id.listViewProduct);
+        ListView lv = (ListView) view.findViewById(R.id.listViewProduct);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
+
+                Log.d("ListView: ", "Product Clicked");
+//                Intent myIntent = new Intent(getActivity(), ProductDetailActivity.class);
+//                HashMap<String, String> map = (HashMap) parent.getItemAtPosition(i);
+//                String id_product = map.get(Configuration.TAG_JSON_ID_PRODUCT).toString();
+//                myIntent.putExtra(Configuration.PGW_ID, id_product);
+//                Log.d("ProductsFragment Log", id_product);
+//                startActivity(myIntent);
+
+            }
+        });
         getJsonData();
 
         return view;
@@ -101,5 +120,16 @@ public class ProductsFragment extends Fragment {
         );
 
         listview.setAdapter(adapter);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        // Event-handling when one of the list is selected
+        Log.d("InstrukturFragment Log", "clicked");
+    }
+
+    @Override
+    public void onClick(View view) {
+
     }
 }
