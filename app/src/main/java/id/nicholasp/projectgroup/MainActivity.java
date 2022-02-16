@@ -1,17 +1,23 @@
 package id.nicholasp.projectgroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
+    Toolbar toolbar;
     // Test
     // Test Dhito
     // Test Dhito 2
@@ -21,12 +27,33 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         // kita set default nya Home Fragment
         loadFragment(new PortofolioFragment());
         // inisialisasi BottomNavigaionView
         BottomNavigationView bottomNavigationView = findViewById(R.id.bn_main);
         // beri listener pada saat item/menu bottomnavigation terpilih
         bottomNavigationView.setOnNavigationItemSelectedListener(this::onNavigationItemSelected);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_nav_items, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.toolbar_menu_exit:
+                startActivity(new Intent(this, LoginFormActivity.class));
+                Toast.makeText(this, "Successfully Logged Out", Toast.LENGTH_LONG).show();
+                break;
+            default:
+                Toast.makeText(this, "No Menu is selected", Toast.LENGTH_LONG).show();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -36,15 +63,19 @@ public class MainActivity extends AppCompatActivity {
                 fragment = new PortofolioFragment();
                 break;
             case R.id.nav_profile:
+                getSupportActionBar().setTitle("Profile");
                 fragment = new ProfileFragment();
                 break;
             case R.id.nav_product:
+                getSupportActionBar().setTitle("Produk");
                 fragment = new ProductsFragment();
                 break;
             case R.id.nav_estatement:
+                getSupportActionBar().setTitle("E Statement");
                 fragment = new EStatementFragment();
                 break;
             case R.id.nav_more:
+                getSupportActionBar().setTitle("More");
                 fragment = new MoreFragment();
                 break;
         }
