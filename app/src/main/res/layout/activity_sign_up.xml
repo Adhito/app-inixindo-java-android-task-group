@@ -29,79 +29,86 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="30dp"
-            android:hint="SID">
+            android:hint="SID"
+            app:boxBackgroundColor="#FFF"
+            app:hintAnimationEnabled="true"
+            app:hintEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txt_r_sid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#FFF"
                 android:inputType="number" />
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nama">
+                android:hint="Nama"
+                app:boxBackgroundColor="#FFF"
+                >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txt_r_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#FFF"
                     android:inputType="textPersonName" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email">
+                    android:hint="Email"
+                    app:boxBackgroundColor="#FFF"
+                    >
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txt_r_mail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="#FFF"
+
                         android:inputType="textWebEmailAddress" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Username">
+                        android:hint="Username"
+                        app:boxBackgroundColor="#FFF"
+                        >
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/txt_r_user"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#FFF"
                             android:inputType="textPersonName" />
 
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:hint="Password">
+                            android:hint="Password"
+                            app:boxBackgroundColor="#FFF"
+                            >
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/txt_r_pass"
                                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:background="#FFF"
                                 android:inputType="textPassword" />
 
                             <com.google.android.material.textfield.TextInputLayout
                                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:hint="Retype Password">
+                                android:hint="Retype Password"
+                                app:boxBackgroundColor="#FFF">
 
                                 <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/txt_r_re_pass"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:background="#FFF"
                                     android:inputType="textPassword" />
 
                             </com.google.android.material.textfield.TextInputLayout>

@@ -13,16 +13,24 @@
 
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Welcome back,"
+            android:textColor="#FFF"
+            android:textSize="19sp"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="10dp"
+             />
+        <TextView
             android:id="@+id/tv_header_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
             android:fontFamily="sans-serif-black"
-            android:text="MyObligasi"
-            android:textAlignment="center"
+            android:text="Your Name"
             android:textColor="#FFF"
             android:textSize="28sp"
-            android:textStyle="italic" />
+            android:letterSpacing="0.04"
+            android:layout_marginLeft="22dp"/>
 
         <LinearLayout
             android:layout_width="350dp"
@@ -74,7 +82,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
