@@ -1,69 +1,122 @@
 package id.nicholasp.projectgroup;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProductsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 public class ProductsFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public ProductsFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProductsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProductsFragment newInstance(String param1, String param2) {
-        ProductsFragment fragment = new ProductsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    private ProgressDialog loading;
+    private String JSON_STRING;
+    ListView listview;
+    Button btn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_products, container, false);
 
-//        getJsonData();
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_products, container, false);
+
+        listview = view.findViewById(R.id.listViewProduct);
+        getJsonData();
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getContext(), "Test", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        return view;
     }
 
-    private void getJsonData() {
+    public void getJsonData() {
+        class GetJsonData extends AsyncTask<Void, Void, String> {
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+//                loading = ProgressDialog.show(getContext(), "Ambil Data Instruktur", "Harap menunggu...", false, false);
+            }
+
+            @Override
+            protected String doInBackground(Void... voids) {
+                HttpHandler handler = new HttpHandler();
+                String result = handler.sendGetResponse(Configuration.GET_ALL_PRODUCT);
+                return result;
+            }
+
+            @Override
+            protected void onPostExecute(String message) {
+                super.onPostExecute(message);
+                JSON_STRING = message;
+                Log.d("DATA_JSON: ", JSON_STRING);
+
+                // menampilkan data json kedalam list view
+                displayAllData();
+            }
+        }
+        GetJsonData getJsonData = new GetJsonData();
+        getJsonData.execute();
+    }
+
+    private void displayAllData() {
+        JSONObject jsonObject = null;
+        ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
+
+        try {
+            jsonObject = new JSONObject(JSON_STRING);
+            JSONArray jsonArray = jsonObject.getJSONArray("result");
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject object = jsonArray.getJSONObject(i);
+                String id_produk = object.getString("id_produk");
+                String seri_produk = object.getString("seri_produk");
+                String yield = object.getString("yield");
+                String jatuh_tempo = object.getString("jatuh_tempo");
+                String nilai_unit = object.getString("nilai_unit");
+
+                HashMap<String, String> produk = new HashMap<>();
+                produk.put("id_produk", id_produk);
+                produk.put("seri_produk", seri_produk);
+                produk.put("yield", yield);
+                produk.put("jatuh_tempo", jatuh_tempo);
+                produk.put("nilai_unit", nilai_unit);
+                list.add(produk);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        // adapter untuk meletakkan array list kedalam list view
+        ListAdapter adapter = new SimpleAdapter(getContext(), list, R.layout.list_produk_layout,
+                new String[]{"id_produk","seri_produk", "jatuh_tempo", "yield", "nilai_unit"},
+                new int[]{R.id.txt_id_produk, R.id.txt_nama_produk, R.id.txt_jatuh_tempo, R.id.txt_yield, R.id.txt_nilai_unit}
+        );
+
+        listview.setAdapter(adapter);
+
+
     }
 }
