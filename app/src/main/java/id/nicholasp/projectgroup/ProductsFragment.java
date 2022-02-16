@@ -1,6 +1,5 @@
 package id.nicholasp.projectgroup;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -26,10 +24,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ProductsFragment extends Fragment {
-    private ProgressDialog loading;
     private String JSON_STRING;
     ListView listview;
-    Button btn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,6 +43,8 @@ public class ProductsFragment extends Fragment {
                 Toast.makeText(getContext(), "Test", Toast.LENGTH_SHORT).show();
             }
         });
+
+
 
 
         return view;
@@ -93,9 +91,9 @@ public class ProductsFragment extends Fragment {
                 JSONObject object = jsonArray.getJSONObject(i);
                 String id_produk = object.getString("id_produk");
                 String seri_produk = object.getString("seri_produk");
-                String yield = object.getString("yield");
+                String yield = object.getString("yield") + "%";
                 String jatuh_tempo = object.getString("jatuh_tempo");
-                String nilai_unit = object.getString("nilai_unit");
+                String nilai_unit = "Rp " + object.getString("nilai_unit");
 
                 HashMap<String, String> produk = new HashMap<>();
                 produk.put("id_produk", id_produk);
@@ -116,7 +114,6 @@ public class ProductsFragment extends Fragment {
         );
 
         listview.setAdapter(adapter);
-
 
     }
 }
