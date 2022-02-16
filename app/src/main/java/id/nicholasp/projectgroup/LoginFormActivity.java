@@ -1,25 +1,19 @@
 package id.nicholasp.projectgroup;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
-import android.os.AsyncTask;
-import android.os.Bundle;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import id.nicholasp.projectgroup.databinding.ActivityLoginFormBinding;

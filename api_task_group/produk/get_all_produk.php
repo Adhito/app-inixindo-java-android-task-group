@@ -15,9 +15,12 @@
 		
 		//Memasukkan Nama dan ID kedalam Array Kosong yang telah dibuat 
 		array_push($result,array(
+                        "id_produk"=>$row['id_produk'],
 			"seri_produk"=>$row['seri_produk'],
 			"yield"=>$row['yield'], 
-			"jatuh_tempo"=>$row['jatuh_tempo'] 
+			"jatuh_tempo"=>$row['jatuh_tempo'],
+                        "nilai_unit"=>$row['nilai_unit'] 
+
 
 		));
 	}

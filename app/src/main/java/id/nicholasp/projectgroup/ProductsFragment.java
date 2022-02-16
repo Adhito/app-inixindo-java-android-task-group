@@ -61,14 +61,14 @@ public class ProductsFragment extends Fragment {
                 Log.d("DATA_JSON: ", JSON_STRING);
 
                 // menampilkan data json kedalam list view
-                displayAllDataInstruktur();
+                displayAllData();
             }
         }
         GetJsonData getJsonData = new GetJsonData();
         getJsonData.execute();
     }
 
-    private void displayAllDataInstruktur() {
+    private void displayAllData() {
         JSONObject jsonObject = null;
         ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 
@@ -79,14 +79,16 @@ public class ProductsFragment extends Fragment {
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject object = jsonArray.getJSONObject(i);
                 String seri_produk = object.getString("seri_produk");
-//                String nama_ins = object.getString(Konfigurasi.TAG_JSON_INS_NAMA);
-//                String email_ins = object.getString(Konfigurasi.TAG_JSON_INS_EMAIL);
+                String yield = object.getString("yield");
+                String jatuh_tempo = object.getString("jatuh_tempo");
+                String nilai_unit = object.getString("nilai_unit");
 
-                HashMap<String, String> instruktur = new HashMap<>();
-                instruktur.put("seri_produk", seri_produk);
-//                instruktur.put(Konfigurasi.TAG_JSON_INS_NAMA, nama_ins);
-//                instruktur.put(Konfigurasi.TAG_JSON_INS_EMAIL, email_ins);
-                list.add(instruktur);
+                HashMap<String, String> produk = new HashMap<>();
+                produk.put("seri_produk", seri_produk);
+                produk.put("yield", yield);
+                produk.put("jatuh_tempo", jatuh_tempo);
+                produk.put("nilai_unit", nilai_unit);
+                list.add(produk);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -94,8 +96,8 @@ public class ProductsFragment extends Fragment {
 
         // adapter untuk meletakkan array list kedalam list view
         ListAdapter adapter = new SimpleAdapter(getContext(), list, R.layout.list_produk_layout,
-                new String[]{"seri_produk"},
-                new int[]{R.id.txt_nama_produk}
+                new String[]{"seri_produk", "jatuh_tempo", "yield", "nilai_unit"},
+                new int[]{R.id.txt_nama_produk, R.id.txt_jatuh_tempo, R.id.txt_yield, R.id.txt_nilai_unit}
         );
 
         listview.setAdapter(adapter);
