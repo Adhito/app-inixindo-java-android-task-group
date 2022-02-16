@@ -113,7 +113,7 @@ public class DetailPortofolioActivity extends AppCompatActivity {
 
         ListAdapter adapter = new SimpleAdapter(
                 DetailPortofolioActivity.this, list,
-                R.layout.list_detail_potofolio,
+                R.layout.list_detail_portofolio,
                 new String[]{ConfigurationPortofolio.TAG_JSON_SERI, ConfigurationPortofolio.TAG_JSON_PRODUK,
                 ConfigurationPortofolio.TAG_JSON_TOTAL,ConfigurationPortofolio.TAG_JSON_BELI},
                 new int[]{R.id.txt_r_seri, R.id.txt_r_prdk,R.id.txt_r_unit, R.id.txt_r_harga}
