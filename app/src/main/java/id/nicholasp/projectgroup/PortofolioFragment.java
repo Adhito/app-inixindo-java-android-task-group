@@ -1,64 +1,115 @@
 package id.nicholasp.projectgroup;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PortofolioFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import id.nicholasp.projectgroup.databinding.FragmentPortofolioBinding;
+
 public class PortofolioFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    // creating constant keys for shared preferences.
+    public static final String SHARED_PREFS = "shared_prefs";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    // key for storing email.
+    public static final String USER_KEY = "user_key";
 
-    public PortofolioFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment PortofolioFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static PortofolioFragment newInstance(String param1, String param2) {
-        PortofolioFragment fragment = new PortofolioFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    SharedPreferences sharedpreferences;
+    String myStr, sendBalance;
+    FragmentPortofolioBinding binding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_portofolio, container, false);
+        binding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_portofolio);
+        View view = inflater.inflate(R.layout.fragment_portofolio, container, false);
+
+//        Intent intent = getActivity().getIntent();
+//        Bundle extras = intent.getExtras();
+//        myStr = extras.getString("keyUser");
+
+        sharedpreferences = getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        myStr = sharedpreferences.getString(USER_KEY, null);
+        Log.d("user: ", myStr);
+
+        getJSON();
+
+        binding.cvRObligasi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Toast.makeText(getActivity(), "CardView Clicked", Toast.LENGTH_SHORT).show();
+                Intent myIntent = new Intent(getActivity(), DetailPortofolioActivity.class);
+                myIntent.putExtra("keyBalance", sendBalance);
+                startActivity(myIntent);
+            }
+        });
+
+        return view;
+    }
+
+    private void getJSON() {
+        // batuan dari class AsynTask
+        class GetJSON extends AsyncTask<Void,Void,String> { // boleh membuat class dalam method (Inner Class)
+            ProgressDialog loading;
+
+            @Override
+            protected void onPreExecute() { // sebelum proses
+                super.onPreExecute();
+                loading = ProgressDialog.show(getActivity(),
+                        "Mengambil Data","Harap Menunggu...",
+                        false,false);
+            }
+
+            @Override
+            protected String doInBackground(Void... voids) { // saat proses
+                HttpHandler handler = new HttpHandler();
+                String result = handler.sendGetResponse(ConfigurationPortofolio.URL_GET_USER,myStr);
+                return result;
+            }
+
+            @Override
+            protected void onPostExecute(String message) { // setelah proses
+                super.onPostExecute(message);
+                loading.dismiss();
+                displayDetailData(message);
+            }
+        }
+        GetJSON getJSON = new GetJSON();
+        getJSON.execute();
+    }
+
+    private void displayDetailData(String message) {
+        try {
+            JSONObject jsonObject = new JSONObject(message);
+            JSONArray result = jsonObject.getJSONArray(ConfigurationPortofolio.TAG_JSON_ARRAY);
+            JSONObject object = result.getJSONObject(0);
+
+            String nama = object.getString(ConfigurationPortofolio.KEY_LOG_NAMA);
+            String balance = object.getString(ConfigurationPortofolio.KEY_LOG_BALANCE);
+            String total = object.getString(ConfigurationPortofolio.KEY_LOG_TOTAL);
+            sendBalance = object.getString(ConfigurationPortofolio.KEY_LOG_TOTAL);
+
+            binding.txtRNama.setText(nama);
+            binding.txtRSaldo.setText("Rp. "+balance);
+            binding.txtRTotal.setText("Rp. "+total);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 }
