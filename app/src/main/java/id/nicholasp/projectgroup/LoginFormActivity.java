@@ -30,10 +30,7 @@ public class LoginFormActivity extends AppCompatActivity {
     public static final String SHARED_PREFS = "shared_prefs";
 
     // key for storing email.
-    public static final String EMAIL_KEY = "email_key";
-
-    // key for storing password.
-    public static final String PASSWORD_KEY = "password_key";
+    public static final String USER_KEY = "user_key";
 
     // variable for shared preferences.
     SharedPreferences sharedpreferences;
@@ -139,14 +136,14 @@ public class LoginFormActivity extends AppCompatActivity {
 
         // below two lines will put values for
         // email and password in shared preferences.
-        editor.putString(EMAIL_KEY, binding.idEdtEmail.getText().toString());
-        editor.putString(PASSWORD_KEY, binding.idEdtPassword.getText().toString());
+        editor.putString(USER_KEY, user);
 
         // to save our data with key and value.
         editor.apply();
 
         // starting new activity.
         Intent i = new Intent(LoginFormActivity.this, MainActivity.class);
+        i.putExtra("keyUser", user);
         startActivity(i);
         finish();
     }
