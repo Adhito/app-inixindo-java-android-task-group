@@ -19,7 +19,9 @@
             android:textColor="#270303"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:focusable="false"
+            android:clickable="false" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,8 +42,11 @@
                     android:text="TextView"
                     android:textAlignment="textStart"
                     android:textColor="#000000"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textSize="18sp"
+                    android:fontFamily="sans-serif-black"
+                    android:textStyle="bold"
+                    android:focusable="false"
+                    android:clickable="false" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -69,8 +74,8 @@
                         android:layout_marginRight="5dp"
                         android:text="Beli"
                         android:textSize="11sp"
-                        android:textColor="@color/black"
-                        android:backgroundTint="#18b124"/>
+                        android:textColor="@color/white"
+                        android:backgroundTint="@color/black"/>
 
                 </LinearLayout>
 
@@ -84,22 +89,27 @@
                         android:layout_width="wrap_content"
                         android:layout_height="25dp"
                         android:layout_marginLeft="16dp"
-                        android:text="Yield Beli:"
+                        android:layout_marginRight="26dp"
+                        android:text="Yield Beli"
                         android:textAlignment="textStart"
                         android:textColor="#000000"
                         android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:focusable="false"
+                        android:clickable="false"/>
 
                     <TextView
                         android:id="@+id/txt_nilai_unitTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="25dp"
                         android:layout_marginLeft="16dp"
-                        android:text="Nilai Unit:"
+                        android:text="Nilai Unit"
                         android:textAlignment="textStart"
                         android:textColor="#000000"
                         android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:focusable="false"
+                        android:clickable="false"/>
 
                 </LinearLayout>
 
@@ -113,22 +123,26 @@
                         android:layout_width="wrap_content"
                         android:layout_height="25dp"
                         android:layout_marginLeft="16dp"
-                        android:layout_marginRight="5dp"
-                        android:text="TextView"
+                        android:layout_marginRight="26dp"
+                        android:text="1.00"
                         android:textAlignment="textStart"
                         android:textColor="#000000"
                         android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:focusable="false"
+                        android:clickable="false"/>
                     <TextView
                         android:id="@+id/txt_nilai_unit"
                         android:layout_width="wrap_content"
                         android:layout_height="25dp"
-                        android:layout_marginLeft="16dp"
+                        android:layout_marginLeft="48dp"
                         android:text="TextView"
                         android:textAlignment="textStart"
                         android:textColor="#000000"
                         android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:focusable="false"
+                        android:clickable="false"/>
                 </LinearLayout>
 
             </LinearLayout>
