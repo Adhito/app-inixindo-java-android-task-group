@@ -4,11 +4,155 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
+
+import java.util.HashMap;
+
+import javax.xml.transform.Result;
+
+import id.nicholasp.projectgroup.databinding.ActivitySignUpBinding;
+
 public class SignUpActivity extends AppCompatActivity {
+    ActivitySignUpBinding binding;
+    String user, pass, re_pass, sid, nama, email,JSON_STRING;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up);
+
+        binding.btnRAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                user = binding.txtRUser.getText().toString().trim();
+                pass = binding.txtRPass.getText().toString().trim();
+                re_pass = binding.txtRRePass.getText().toString().trim();
+                sid = binding.txtRSid.getText().toString().trim();
+                nama = binding.txtRName.getText().toString().trim();
+                email = binding.txtRMail.getText().toString().trim();
+
+                if (user.equals("") || pass.equals("") || sid.equals("") || nama.equals("") || email.equals("")) {
+                    Toast.makeText(SignUpActivity.this, "Semua Data Wajib Diisi", Toast.LENGTH_LONG).show();
+                } else if (!(pass.equals(re_pass))) {
+                    Toast.makeText(SignUpActivity.this, "Password dan Re-Password \nHarus Sama", Toast.LENGTH_LONG).show();
+                } else {
+                    cekUser();
+                }
+            }
+        });
+
+        binding.btnRCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignUpActivity.this, LoginFormActivity.class));
+            }
+        });
+
+    }
+
+    private void simpanData() {
+//        final String sid = binding.txtRSid.getText().toString().trim();
+//        final String nama = binding.txtRName.getText().toString().trim();
+
+        class SimpanData extends AsyncTask<Void, Void, String> {
+            ProgressDialog loading;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(SignUpActivity.this,
+                        "Menyimpan Data", "Harap tunggu...",
+                        false, false);
+            }
+
+            @Override
+            protected String doInBackground(Void... voids) {
+                HashMap<String, String> params = new HashMap<>();
+                params.put(ConfigurationLogin.KEY_LOG_USER, user);
+                params.put(ConfigurationLogin.KEY_LOG_PASS, pass);
+                params.put(ConfigurationLogin.KEY_LOG_SID, sid);
+                params.put(ConfigurationLogin.KEY_LOG_NAMA, nama);
+                params.put(ConfigurationLogin.KEY_LOG_EMAIL, email);
+                HttpHandler handler = new HttpHandler();
+                String result = handler.sendPostRequest(ConfigurationLogin.URL_ADD_LOGIN, params);
+                Log.d("res", result + " sid " + sid + " nama " + nama +
+                        " user " + user + " pass " + pass + " email " + email);
+                return result;
+            }
+
+            @Override
+            protected void onPostExecute(String message) {
+                super.onPostExecute(message);
+                loading.dismiss();
+                Toast.makeText(SignUpActivity.this, "pesan: " + message,
+                        Toast.LENGTH_SHORT).show();
+                clearText();
+                Intent myIntent = new Intent(SignUpActivity.this, LoginFormActivity.class);
+                myIntent.putExtra("keyName", "materi");
+                startActivity(myIntent);
+            }
+        }
+        SimpanData simpanData = new SimpanData();
+        simpanData.execute();
+    }
+
+    private void clearText() {
+        binding.txtRUser.setText("");
+        binding.txtRPass.setText("");
+        binding.txtRSid.setText("");
+        binding.txtRName.setText("");
+        binding.txtRMail.setText("");
+    }
+
+    private void cekUser(){
+        class CekUser extends AsyncTask<Void, Void, String> { // boleh membuat class dalam method (Inner Class)
+            ProgressDialog loading;
+
+            @Override
+            protected void onPreExecute() { // sebelum proses
+                super.onPreExecute();
+                loading = ProgressDialog.show(SignUpActivity.this,
+                        "Mengambil Data", "Harap Menunggu...",
+                        false, false);
+            }
+
+            @Override
+            protected String doInBackground(Void... voids) { // saat proses
+                HttpHandler handler = new HttpHandler();
+                HashMap<String, String> hashMap = new HashMap<>();
+                hashMap.put("user", user);
+                String result = handler.sendGetResponse(ConfigurationLogin.URL_GET_USER,user);
+                Log.d("res:", result + " user: " + user);
+                Log.d("user:", user);
+
+                return result;
+            }
+
+            @Override
+            protected void onPostExecute(String message) { // setelah proses
+                super.onPostExecute(message);
+                loading.dismiss();
+                JSON_STRING = message;
+                Log.d("DATA JSON: ", JSON_STRING);
+                if (!(message.contains("Warning") || message.contains("error") || message.contains("[]"))) {
+                    Toast.makeText(SignUpActivity.this, "Username Sudah Ada", Toast.LENGTH_LONG).show();
+                } else {
+//                    Toast.makeText(SignUpActivity.this, "Berhasil", Toast.LENGTH_LONG).show();
+                    simpanData();
+                }
+            }
+        }
+        CekUser cekUser = new CekUser();
+        cekUser.execute();
     }
 }
