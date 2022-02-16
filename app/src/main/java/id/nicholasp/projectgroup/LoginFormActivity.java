@@ -122,7 +122,7 @@ public class LoginFormActivity extends AppCompatActivity {
                 Log.d("DATA JSON: ", JSON_STRING);
                 //{"result":[]}
 //                Toast.makeText(MainActivity.this, "msg: " + message, Toast.LENGTH_LONG).show();
-                if (message.contains("Warning") || message.contains("error") || message.contains("[]")) {
+                if (message.contains("Warning") || message.contains("error") || message.contains("[]") || message.equals("")  || message.equals(null)) {
                     Toast.makeText(LoginFormActivity.this, "Gagal Login", Toast.LENGTH_LONG).show();
                 }else{
                     Toast.makeText(LoginFormActivity.this, "Berhasil Login", Toast.LENGTH_LONG).show();
