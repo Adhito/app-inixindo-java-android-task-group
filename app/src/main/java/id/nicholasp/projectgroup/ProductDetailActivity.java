@@ -6,8 +6,10 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,14 +29,20 @@ import java.util.HashMap;
 
 public class ProductDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
+    // session
+    public static final String SHARED_PREFS = "shared_prefs";
+    public static final String ID_KEY = "id_key";
+
     TextView txt_pd_seri_produk, txt_pd_nama_produk, txt_pd_nominaltransaksi, txt_kelipatan, txt_pd_nilai_unit, txt_pd_yield, txt_pd_jatuh_tempo, txt_pd_minimum_transaksi, txt_pd_maksimum_transaksi, txt_pd_kelipatan_transaksi, txt_pd_penerbit, txt_pd_jenis_kupon, txt_pd_mata_uang, txt_pd_pembayaran_kupon;
     Button btn_beli, btn_plus, btn_minus;
-    String id_produk;
+    String id_produk, id;
     Toolbar toolbar;
+    SharedPreferences sharedpreferences;
     private int myValue = 0; // nilai awal
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
 
@@ -222,8 +230,10 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
     private void buyProduct() {
         Intent receiveIntent = getIntent();
         Date date = new Date();
+        sharedpreferences = getApplicationContext().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        id = sharedpreferences.getString(ID_KEY, null);
 
-        final String id_detail_user  = "1";
+        final String id_detail_user  = id;
         final String id_produk = receiveIntent.getStringExtra(Configuration.PGW_ID);
         final String tgl_beli = new SimpleDateFormat("yyyy-MM-dd").format(date);
         final String harga_unit = txt_pd_kelipatan_transaksi.getText().toString().trim();
@@ -262,6 +272,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
+                Log.d("Pesan", s);
             }
         }
         BuyProduct buyProduct = new BuyProduct();
