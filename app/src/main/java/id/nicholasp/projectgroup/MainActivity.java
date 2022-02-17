@@ -15,6 +15,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -24,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String SHARED_PREFS = "shared_prefs";
     public static final String USER_KEY = "user_key";
     SharedPreferences sharedpreferences;
+    int fid = 0;
+    int his = 0;
 
     Toolbar toolbar;
 
@@ -38,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         // kita set default nya Home Fragment
         getSupportActionBar().setTitle("Portofolio");
-        loadFragment(new PortofolioFragment());
+        loadFragment(new PortofolioFragment(), 0);
         // inisialisasi BottomNavigaionView
         BottomNavigationView bottomNavigationView = findViewById(R.id.bn_main);
         // beri listener pada saat item/menu bottomnavigation terpilih
@@ -71,35 +75,50 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment = null;
         switch (menuItem.getItemId()){
             case R.id.nav_portofolio:
+                fid = 0;
                 getSupportActionBar().setTitle("Portofolio");
                 fragment = new PortofolioFragment();
                 break;
             case R.id.nav_profile:
+                fid = 1;
                 getSupportActionBar().setTitle("Profile");
                 fragment = new ProfileFragment();
                 break;
             case R.id.nav_product:
+                fid = 2;
                 getSupportActionBar().setTitle("Produk");
                 fragment = new ProductsFragment();
                 break;
             case R.id.nav_estatement:
+                fid = 3;
                 getSupportActionBar().setTitle("E Statement");
                 fragment = new EStatementFragment();
                 break;
             case R.id.nav_more:
+                fid = 4;
                 getSupportActionBar().setTitle("More");
                 fragment = new MoreFragment();
                 break;
         }
-        return loadFragment(fragment);
+        return loadFragment(fragment, fid);
     }
 
-    private boolean loadFragment(Fragment fragment){
+    private boolean loadFragment(Fragment fragment, Integer in){
         if (fragment != null) {
             FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
-            transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-            transaction.replace(R.id.fl_container, fragment);
+            if (his < in) {
+                transaction.setCustomAnimations(R.anim.anim_left, R.anim.anim_static);
+                Log.d("Frag", "loadFragmentIn: " + fid);
+                Log.d("Frag", "loadFragmentHis: " + his);
+            }
+            if (his > in){
+                transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                Log.d("Frag", "loadFragmentIn: " + fid);
+                Log.d("Frag", "loadFragmentHis: " + his);
+            }
+            transaction.replace(R.id.fl_container, fragment, String.valueOf(in));
+            his = in;
             transaction.addToBackStack(null);
             transaction.commit();
             return true;

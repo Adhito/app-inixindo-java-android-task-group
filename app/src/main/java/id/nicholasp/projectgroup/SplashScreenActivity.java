@@ -26,7 +26,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 startActivity(myIntent);
                 finish();
             }
-        },5000);
+        },1000);
     }
 
     private void Timer() {
