@@ -49,27 +49,27 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(this::onNavigationItemSelected);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar_nav_items, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.toolbar_nav_items, menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.toolbar_menu_exit:
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-                editor.clear();
-                editor.apply();
-                startActivity(new Intent(this, LoginFormActivity.class));
-                Toast.makeText(this, "Successfully Logged Out", Toast.LENGTH_LONG).show();
-                break;
-            default:
-                Toast.makeText(this, "No Menu is selected", Toast.LENGTH_LONG).show();
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.toolbar_menu_exit:
+//                SharedPreferences.Editor editor = sharedpreferences.edit();
+//                editor.clear();
+//                editor.apply();
+//                startActivity(new Intent(this, LoginFormActivity.class));
+//                Toast.makeText(this, "Successfully Logged Out", Toast.LENGTH_LONG).show();
+//                break;
+//            default:
+//                Toast.makeText(this, "No Menu is selected", Toast.LENGTH_LONG).show();
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     private boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         Fragment fragment = null;
