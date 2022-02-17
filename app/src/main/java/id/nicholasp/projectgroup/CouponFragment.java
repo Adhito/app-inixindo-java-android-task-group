@@ -154,7 +154,7 @@ public class CouponFragment extends Fragment {
         }
 
         // adapter untuk meletakkan array list kedalam list view
-        ListAdapter adapter = new SimpleAdapter(getContext(), list, R.layout.list_coupon_layout,
+        ListAdapter adapter = new SimpleAdapter(getContext(), list, R.layout.list_kupon,
                 new String[]{"seri_produk","kupon", "tgl_kupon"},
                 new int[]{R.id.txt_seri_produk, R.id.txt_kupon, R.id.txt_tgl_kupon}
         );
