@@ -92,7 +92,9 @@
                 android:id="@+id/cv_r_obligasi"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                app:cardBackgroundColor="#F2F2F2">
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardElevation="6dp"
+                app:cardCornerRadius="12dp">
 
                 <ImageView
                     android:id="@+id/imageView2"
