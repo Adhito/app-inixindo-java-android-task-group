@@ -13,6 +13,7 @@ public class Configuration {
     // API Produk
     public static final String GET_ALL_PRODUCT      = String.format("http://%s/api_task_group/produk/get_all_produk.php", ip_adress);
     public static final String GET_DETAIL_PRODUCT   = String.format("http://%s/api_task_group/produk/get_detail_produk.php?id_produk=", ip_adress);
+    public static final String URL_ADD_PRODUCT      = String.format("http://%s/api_task_group/produk/add_produk.php", ip_adress);
 
     // API TAG
     public static final String TAG_JSON_ARRAY = "result";

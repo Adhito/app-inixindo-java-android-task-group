@@ -111,12 +111,13 @@ public class DetailPortofolioActivity extends AppCompatActivity {
                 String produk = object.getString(ConfigurationPortofolio.KEY_LOG_NAMA_PRODUK);
                 String total = object.getString(ConfigurationPortofolio.KEY_LOG_TOTAL);
                 String harga = object.getString(ConfigurationPortofolio.KEY_LOG_HARGA_BELI);
+                Integer harga_total = Integer.parseInt(total) * Integer.parseInt(harga);
 
                 HashMap<String, String> portofolio = new HashMap<>();
                 portofolio.put(ConfigurationPortofolio.TAG_JSON_SERI, seri);
                 portofolio.put(ConfigurationPortofolio.TAG_JSON_PRODUK, produk);
                 portofolio.put(ConfigurationPortofolio.TAG_JSON_TOTAL, total);
-                portofolio.put(ConfigurationPortofolio.TAG_JSON_BELI, harga);
+                portofolio.put(ConfigurationPortofolio.TAG_JSON_BELI, harga_total.toString());
 
                 //ubah format JSON menjadi Array List
                 list.add(portofolio);
