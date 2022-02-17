@@ -22,8 +22,10 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class DetailPortofolioActivity extends AppCompatActivity {
     // creating constant keys for shared preferences.
@@ -55,10 +57,15 @@ public class DetailPortofolioActivity extends AppCompatActivity {
         Bundle extras = intent.getExtras();
         getBalance = extras.getString("keyBalance");
 
-        binding.txtDBalance.setText("Rp. "+getBalance);
-
+        binding.txtDBalance.setText(formatRupiah(Double.parseDouble(getBalance)));
         getJSON();
 
+    }
+
+    private String formatRupiah(Double number) {
+        Locale localeID = new Locale("in", "ID");
+        NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
+        return formatRupiah.format(number);
     }
 
     private void getJSON() {
@@ -117,7 +124,7 @@ public class DetailPortofolioActivity extends AppCompatActivity {
                 portofolio.put(ConfigurationPortofolio.TAG_JSON_SERI, seri);
                 portofolio.put(ConfigurationPortofolio.TAG_JSON_PRODUK, produk);
                 portofolio.put(ConfigurationPortofolio.TAG_JSON_TOTAL, total);
-                portofolio.put(ConfigurationPortofolio.TAG_JSON_BELI, harga_total.toString());
+                portofolio.put(ConfigurationPortofolio.TAG_JSON_BELI, formatRupiah(Double.parseDouble(harga_total.toString())));
 
                 //ubah format JSON menjadi Array List
                 list.add(portofolio);
