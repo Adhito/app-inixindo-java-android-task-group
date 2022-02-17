@@ -23,7 +23,7 @@ import id.nicholasp.projectgroup.databinding.ActivitySignUpBinding;
 
 public class SignUpActivity extends AppCompatActivity {
     ActivitySignUpBinding binding;
-    String user, pass, re_pass, sid, nama, email,JSON_STRING;
+    String user, pass, re_pass, sid, nama, email, hp, JSON_STRING;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +40,15 @@ public class SignUpActivity extends AppCompatActivity {
                 sid = binding.txtRSid.getText().toString().trim();
                 nama = binding.txtRName.getText().toString().trim();
                 email = binding.txtRMail.getText().toString().trim();
+                hp = binding.txtRPhone.getText().toString().trim();
 
+                String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
                 if (user.equals("") || pass.equals("") || sid.equals("") || nama.equals("") || email.equals("")) {
                     Toast.makeText(SignUpActivity.this, "Semua Data Wajib Diisi", Toast.LENGTH_LONG).show();
                 } else if (!(pass.equals(re_pass))) {
                     Toast.makeText(SignUpActivity.this, "Password dan Re-Password \nHarus Sama", Toast.LENGTH_LONG).show();
+                } else if (!(email.matches(emailPattern) && email.length() > 0)) {
+                    Toast.makeText(SignUpActivity.this, "Format Email Salah", Toast.LENGTH_LONG).show();
                 } else {
                     cekUser();
                 }
@@ -83,10 +87,11 @@ public class SignUpActivity extends AppCompatActivity {
                 params.put(ConfigurationLogin.KEY_LOG_SID, sid);
                 params.put(ConfigurationLogin.KEY_LOG_NAMA, nama);
                 params.put(ConfigurationLogin.KEY_LOG_EMAIL, email);
+                params.put(ConfigurationLogin.KEY_LOG_HP, hp);
                 HttpHandler handler = new HttpHandler();
                 String result = handler.sendPostRequest(ConfigurationLogin.URL_ADD_LOGIN, params);
                 Log.d("res", result + " sid " + sid + " nama " + nama +
-                        " user " + user + " pass " + pass + " email " + email);
+                        " user " + user + " pass " + pass + " email " + email + " hp " + hp);
                 return result;
             }
 
@@ -109,12 +114,14 @@ public class SignUpActivity extends AppCompatActivity {
     private void clearText() {
         binding.txtRUser.setText("");
         binding.txtRPass.setText("");
+        binding.txtRRePass.setText("");
         binding.txtRSid.setText("");
         binding.txtRName.setText("");
         binding.txtRMail.setText("");
+        binding.txtRPhone.setText("");
     }
 
-    private void cekUser(){
+    private void cekUser() {
         class CekUser extends AsyncTask<Void, Void, String> { // boleh membuat class dalam method (Inner Class)
             ProgressDialog loading;
 
@@ -131,7 +138,7 @@ public class SignUpActivity extends AppCompatActivity {
                 HttpHandler handler = new HttpHandler();
                 HashMap<String, String> hashMap = new HashMap<>();
                 hashMap.put("user", user);
-                String result = handler.sendGetResponse(ConfigurationLogin.URL_GET_USER,user);
+                String result = handler.sendGetResponse(ConfigurationLogin.URL_GET_USER, user);
                 Log.d("res:", result + " user: " + user);
                 Log.d("user:", user);
 
