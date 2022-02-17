@@ -22,6 +22,9 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 import id.nicholasp.projectgroup.databinding.FragmentPortofolioBinding;
 
 public class PortofolioFragment extends Fragment {
@@ -145,10 +148,15 @@ public class PortofolioFragment extends Fragment {
             editor.apply();
 
             txtRNama.setText(nama);
-            txtRSaldo.setText("Rp. "+balance);
-            txtRTotal.setText("Rp. "+total);
+            txtRSaldo.setText(formatRupiah(Double.parseDouble(balance)));
+            txtRTotal.setText(formatRupiah(Double.parseDouble(total)));
         } catch (Exception ex){
             ex.printStackTrace();
         }
+    }
+    private String formatRupiah(Double number){
+        Locale localeID = new Locale("in", "ID");
+        NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
+        return formatRupiah.format(number);
     }
 }

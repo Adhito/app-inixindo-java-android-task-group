@@ -22,9 +22,11 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 public class ProductsFragment extends Fragment {
     private ProgressDialog loading;
@@ -118,9 +120,9 @@ public class ProductsFragment extends Fragment {
                 HashMap<String, String> produk = new HashMap<>();
                 produk.put("id_produk", id_produk);
                 produk.put("seri_produk", seri_produk);
-                produk.put("yield", yield);
+                produk.put("yield", yield + "%");
                 produk.put("jatuh_tempo", jatuh_tempo);
-                produk.put("nilai_unit", nilai_unit);
+                produk.put("nilai_unit", formatRupiah(Double.parseDouble(nilai_unit)));
                 list.add(produk);
             }
         } catch (Exception ex) {
@@ -136,5 +138,11 @@ public class ProductsFragment extends Fragment {
         listview.setAdapter(adapter);
 
 
+    }
+
+    private String formatRupiah(Double number){
+        Locale localeID = new Locale("in", "ID");
+        NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
+        return formatRupiah.format(number);
     }
 }

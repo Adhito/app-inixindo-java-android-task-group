@@ -23,9 +23,11 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class ProductDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -177,8 +179,8 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
             // txt_pd_nilai_unit.setText(nilai_unit);
             // txt_pd_yield.setText(yield);
             txt_pd_jatuh_tempo.setText(jatuh_tempo);
-            txt_pd_minimum_transaksi.setText("Rp " + minimum_transaksi);
-            txt_pd_maksimum_transaksi.setText("Rp " + maksimum_transaksi);
+            txt_pd_minimum_transaksi.setText(formatRupiah(Double.parseDouble(minimum_transaksi)));
+            txt_pd_maksimum_transaksi.setText(formatRupiah(Double.parseDouble(maksimum_transaksi)));
             txt_pd_kelipatan_transaksi.setText(kelipatan_transaksi);
             txt_pd_penerbit.setText(penerbit);
             // txt_pd_jenis_kupon.setText(jenis_kupon);
@@ -188,6 +190,12 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    private String formatRupiah(Double number){
+        Locale localeID = new Locale("in", "ID");
+        NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
+        return formatRupiah.format(number);
     }
 
     @Override
