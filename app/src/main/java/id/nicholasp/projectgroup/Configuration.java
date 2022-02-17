@@ -3,7 +3,7 @@ package id.nicholasp.projectgroup;
 public class Configuration {
 
     // API URL untuk GET, GET_DETAIL, ADD, UPDATE dan DELETE
-    public static final String ip_adress = "192.168.5.94";
+    public static final String ip_adress = "192.168.190.102";
 
     // API Format
     public static final String API_1    = String.format("http://%s/api_task_group/$NAMA_KELOMPOKNYA/$NAMA_FILE_PHP.php", ip_adress);

@@ -39,7 +39,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
 
     TextView txt_pd_seri_produk, txt_pd_nama_produk, txt_pd_nominaltransaksi, txt_kelipatan, txt_pd_nilai_unit, txt_pd_yield, txt_pd_jatuh_tempo, txt_pd_minimum_transaksi, txt_pd_maksimum_transaksi, txt_pd_kelipatan_transaksi, txt_pd_penerbit, txt_pd_jenis_kupon, txt_pd_mata_uang, txt_pd_pembayaran_kupon;
     Button btn_beli, btn_plus, btn_minus;
-    String id_produk, id, balance;
+    String id_produk, id, balance, kt_cal;
     Toolbar toolbar;
     SharedPreferences sharedpreferences;
 
@@ -81,10 +81,10 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onClick(View v) {
                 myValue++;
-                int nom = myValue * Integer.valueOf(txt_pd_kelipatan_transaksi.getText().toString());
+                int nom = myValue * Integer.valueOf(kt_cal);
                 if (txt_kelipatan != null) {
                     txt_kelipatan.setText(Integer.toString(myValue));
-                    txt_pd_nominaltransaksi.setText(Integer.toString(nom));
+                    txt_pd_nominaltransaksi.setText(formatRupiah(Double.parseDouble(Integer.toString(nom))));
                 }
             }
         });
@@ -95,15 +95,15 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
                 int in = Integer.valueOf(txt_kelipatan.getText().toString());
                 if (in <= 0) {
                     myValue = 0;
-                    int nom = myValue * Integer.valueOf(txt_pd_kelipatan_transaksi.getText().toString());
+                    int nom = myValue * Integer.valueOf(kt_cal);
                     txt_kelipatan.setText(Integer.toString(myValue));
-                    txt_pd_nominaltransaksi.setText(Integer.toString(nom));
+                    txt_pd_nominaltransaksi.setText(formatRupiah(Double.parseDouble(Integer.toString(nom))));
                 }
                 else {
                     myValue--;
-                    int nom = myValue * Integer.valueOf(txt_pd_kelipatan_transaksi.getText().toString());
+                    int nom = myValue * Integer.valueOf(kt_cal);
                     txt_kelipatan.setText(Integer.toString(myValue));
-                    txt_pd_nominaltransaksi.setText(Integer.toString(nom));
+                    txt_pd_nominaltransaksi.setText(formatRupiah(Double.parseDouble(Integer.toString(nom))));
                 }
             }
         });
@@ -168,6 +168,8 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
             String minimum_transaksi = object.getString("minimum_transaksi");
             String maksimum_transaksi = object.getString("maksimum_transaksi");
             String kelipatan_transaksi = object.getString("kelipatan_transaksi");
+            kt_cal = kelipatan_transaksi;
+            String kt_cal = object.getString("kelipatan_transaksi");
             String penerbit = object.getString("penerbit");
             // String jenis_kupon = object.getString("jenis_kupon");
             // String mata_uang = object.getString("mata_uang");
@@ -180,7 +182,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
             txt_pd_jatuh_tempo.setText(jatuh_tempo);
             txt_pd_minimum_transaksi.setText(formatRupiah(Double.parseDouble(minimum_transaksi)));
             txt_pd_maksimum_transaksi.setText(formatRupiah(Double.parseDouble(maksimum_transaksi)));
-            txt_pd_kelipatan_transaksi.setText(kelipatan_transaksi);
+            txt_pd_kelipatan_transaksi.setText(formatRupiah(Double.parseDouble(kelipatan_transaksi)));
             txt_pd_penerbit.setText(penerbit);
             // txt_pd_jenis_kupon.setText(jenis_kupon);
             // txt_pd_mata_uang.setText(mata_uang);
