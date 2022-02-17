@@ -29,7 +29,7 @@ import java.util.HashMap;
 
 public class ProductDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
-    // session
+    // Session
     public static final String SHARED_PREFS = "shared_prefs";
     public static final String ID_KEY = "id_key";
     public static final String BALANCE_KEY = "balance_key";
@@ -40,7 +40,6 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
     String id_produk, id, balance;
     Toolbar toolbar;
     SharedPreferences sharedpreferences;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

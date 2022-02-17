@@ -89,10 +89,10 @@ public class MainActivity extends AppCompatActivity {
                 getSupportActionBar().setTitle("Produk");
                 fragment = new ProductsFragment();
                 break;
-            case R.id.nav_estatement:
+            case R.id.nav_coupon:
                 fid = 3;
-                getSupportActionBar().setTitle("E Statement");
-                fragment = new EStatementFragment();
+                getSupportActionBar().setTitle("Coupon Calendar");
+                fragment = new CouponFragment();
                 break;
             case R.id.nav_more:
                 fid = 4;

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="0dp">
+
+        <TextView
+            android:id="@+id/txt_id_produk"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginLeft="16dp"
+            android:text="TextView"
+            android:textAlignment="textStart"
+            android:textColor="#270303"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            android:focusable="false"
+            android:clickable="false" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cardviewstyle"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_nama_produk"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginLeft="16dp"
+                android:text="TextView"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-black"
+                android:textStyle="bold"
+                android:focusable="false"
+                android:clickable="false" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txt_seri_produk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="8dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:text="txt_seri_produk"
+                    android:textAlignment="textStart"
+                    android:textColor="#999999"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txt_kupon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="2"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:text="txt_kupon"
+                    android:textAlignment="textStart"
+                    android:textColor="#999999"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txt_tgl_kupon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="2"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:text="txt_tgl_kupon"
+                    android:textAlignment="textStart"
+                    android:textColor="#999999"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>
