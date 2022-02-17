@@ -56,6 +56,7 @@ public class LoginFormActivity extends AppCompatActivity {
             }
         });
 
+
         // calling on click listener for login button.
         binding.idBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +77,11 @@ public class LoginFormActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(this, "Tidak Dapat Kembali", Toast.LENGTH_SHORT).show();
     }
 
     private void cekLogin() {
