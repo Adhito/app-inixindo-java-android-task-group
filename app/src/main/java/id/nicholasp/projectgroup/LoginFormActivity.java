@@ -45,6 +45,10 @@ public class LoginFormActivity extends AppCompatActivity {
         // getting the data which is stored in shared preferences.
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
 
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString(USER_KEY, null);
+        editor.apply();
+
         binding.idBtnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -26,11 +26,14 @@ import id.nicholasp.projectgroup.databinding.FragmentPortofolioBinding;
 
 public class PortofolioFragment extends Fragment {
 
-    // creating constant keys for shared preferences.
+    // session
     public static final String SHARED_PREFS = "shared_prefs";
-
-    // key for storing email.
     public static final String USER_KEY = "user_key";
+    public static final String ID_KEY = "id_key";
+    public static final String NAMA_KEY = "nama_key";
+    public static final String SID_KEY = "sid_key";
+    public static final String EMAIL_KEY = "email_key";
+    public static final String HP_KEY = "hp_key";
 
     SharedPreferences sharedpreferences;
     String myStr, sendBalance;
@@ -51,6 +54,15 @@ public class PortofolioFragment extends Fragment {
 
         sharedpreferences = getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         myStr = sharedpreferences.getString(USER_KEY, null);
+
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString(ID_KEY, null);
+        editor.putString(NAMA_KEY, null);
+        editor.putString(EMAIL_KEY, null);
+        editor.putString(SID_KEY, null);
+        editor.putString(HP_KEY, null);
+        editor.apply();
+
         cvRObligasi = view.findViewById(R.id.cv_r_obligasi);
         txtRNama = view.findViewById(R.id.txt_r_nama);
         txtRSaldo = view.findViewById(R.id.txt_r_saldo);
@@ -58,6 +70,8 @@ public class PortofolioFragment extends Fragment {
         Log.d("user: ", myStr);
 
         getJSON();
+
+
 
         cvRObligasi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +100,7 @@ public class PortofolioFragment extends Fragment {
             protected String doInBackground(Void... voids) { // saat proses
                 HttpHandler handler = new HttpHandler();
                 String result = handler.sendGetResponse(ConfigurationPortofolio.URL_GET_USER,myStr);
+                Log.d("prof: ",result);
                 return result;
             }
 
@@ -105,10 +120,27 @@ public class PortofolioFragment extends Fragment {
             JSONArray result = jsonObject.getJSONArray(ConfigurationPortofolio.TAG_JSON_ARRAY);
             JSONObject object = result.getJSONObject(0);
 
+            Log.d("msg: ",message);
+
+            String id_user = object.getString(ConfigurationPortofolio.KEY_LOG_DETAIL_ID);
             String nama = object.getString(ConfigurationPortofolio.KEY_LOG_NAMA);
             String balance = object.getString(ConfigurationPortofolio.KEY_LOG_BALANCE);
+            String sid = object.getString(ConfigurationPortofolio.KEY_LOG_SID);
+            String email = object.getString(ConfigurationPortofolio.KEY_LOG_EMAIL);
+            String hp = object.getString(ConfigurationPortofolio.KEY_LOG_HP);
             String total = object.getString(ConfigurationPortofolio.KEY_LOG_TOTAL);
             sendBalance = object.getString(ConfigurationPortofolio.KEY_LOG_TOTAL);
+
+            Log.d("profile: ", "id: " + id_user + " nama: "+nama+" balance: "+balance+
+                    " sid: " + sid + " email: " + email + " hp: "+hp);
+
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.putString(ID_KEY, id_user);
+            editor.putString(NAMA_KEY, nama);
+            editor.putString(EMAIL_KEY, email);
+            editor.putString(SID_KEY, sid);
+            editor.putString(HP_KEY, hp);
+            editor.apply();
 
             txtRNama.setText(nama);
             txtRSaldo.setText("Rp. "+balance);

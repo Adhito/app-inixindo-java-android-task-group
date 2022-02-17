@@ -1,5 +1,7 @@
 package id.nicholasp.projectgroup;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,58 +9,48 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ProfileFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public ProfileFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProfileFragment newInstance(String param1, String param2) {
-        ProfileFragment fragment = new ProfileFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    // session
+    public static final String SHARED_PREFS = "shared_prefs";
+    public static final String USER_KEY = "user_key";
+    public static final String ID_KEY = "id_key";
+    public static final String NAMA_KEY = "nama_key";
+    public static final String SID_KEY = "sid_key";
+    public static final String EMAIL_KEY = "email_key";
+    public static final String HP_KEY = "hp_key";
+    SharedPreferences sharedpreferences;
+    TextView txt_p_nama,txt_p_user,txt_p_sid,txt_p_email,txt_p_hp;
+    String user, nama, sid, email, hp;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        txt_p_nama = view.findViewById(R.id.txt_p_nama);
+        txt_p_user = view.findViewById(R.id.txt_p_user);
+        txt_p_sid = view.findViewById(R.id.txt_p_sid);
+        txt_p_email = view.findViewById(R.id.txt_p_email);
+        txt_p_hp = view.findViewById(R.id.txt_p_hp);
+
+        sharedpreferences = getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        user = sharedpreferences.getString(USER_KEY, null);
+        nama = sharedpreferences.getString(NAMA_KEY, null);
+        sid = sharedpreferences.getString(SID_KEY, null);
+        email = sharedpreferences.getString(EMAIL_KEY, null);
+        hp = sharedpreferences.getString(HP_KEY, null);
+
+        txt_p_nama.setText(nama);
+        txt_p_user.setText(user);
+        txt_p_sid.setText(sid);
+        txt_p_email.setText(email);
+        txt_p_hp.setText(hp);
+
+
+        return view;
     }
 }
