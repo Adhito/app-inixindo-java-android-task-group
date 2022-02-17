@@ -25,10 +25,11 @@ import java.util.HashMap;
 
 public class ProductDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
-    TextView txt_pd_seri_produk, txt_pd_nama_produk, txt_pd_nilai_unit, txt_pd_yield, txt_pd_jatuh_tempo, txt_pd_minimum_transaksi, txt_pd_maksimum_transaksi, txt_pd_kelipatan_transaksi, txt_pd_penerbit, txt_pd_jenis_kupon, txt_pd_mata_uang, txt_pd_pembayaran_kupon;
-    Button btn_beli;
+    TextView txt_pd_seri_produk, txt_pd_nama_produk, txt_pd_nominaltransaksi, txt_kelipatan, txt_pd_nilai_unit, txt_pd_yield, txt_pd_jatuh_tempo, txt_pd_minimum_transaksi, txt_pd_maksimum_transaksi, txt_pd_kelipatan_transaksi, txt_pd_penerbit, txt_pd_jenis_kupon, txt_pd_mata_uang, txt_pd_pembayaran_kupon;
+    Button btn_beli, btn_plus, btn_minus;
     String id_produk;
     Toolbar toolbar;
+    private int myValue = 0; // nilai awal
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,17 +50,52 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         txt_pd_maksimum_transaksi = findViewById(R.id.txt_pd_maksimum_transaksi);
         txt_pd_kelipatan_transaksi = findViewById(R.id.txt_pd_kelipatan_transaksi);
         txt_pd_penerbit = findViewById(R.id.txt_pd_penerbit);
+        txt_kelipatan = findViewById(R.id.txt_pd_kelipatan);
+        txt_pd_nominaltransaksi = findViewById(R.id.txt_pd_nominaltransaksi);
 //        txt_pd_jenis_kupon = findViewById(R.id.txt_pd_jenis_kupon);
 //        txt_pd_mata_uang = findViewById(R.id.txt_pd_mata_uang);
 //        txt_pd_pembayaran_kupon = findViewById(R.id.txt_pd_pembayaran_kupon);
 //        btn_beli = findViewById(R.id.btn_beli);
 
+        btn_plus = findViewById(R.id.btn_plus);
+        btn_minus = findViewById(R.id.btn_minus);
 
         Intent receiveIntent = getIntent();
         id_produk = receiveIntent.getStringExtra(Configuration.PGW_ID);
 
         getJSON();
 //        btn_beli.setOnClickListener(this);
+
+        btn_plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myValue++;
+                int nom = myValue * Integer.valueOf(txt_pd_kelipatan_transaksi.getText().toString());
+                if (txt_kelipatan != null) {
+                    txt_kelipatan.setText(Integer.toString(myValue));
+                    txt_pd_nominaltransaksi.setText(Integer.toString(nom));
+                }
+            }
+        });
+
+        btn_minus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int in = Integer.valueOf(txt_kelipatan.getText().toString());
+                if (in <= 0) {
+                    myValue = 0;
+                    int nom = myValue * Integer.valueOf(txt_pd_kelipatan_transaksi.getText().toString());
+                    txt_kelipatan.setText(Integer.toString(myValue));
+                    txt_pd_nominaltransaksi.setText(Integer.toString(nom));
+                }
+                else {
+                    myValue--;
+                    int nom = myValue * Integer.valueOf(txt_pd_kelipatan_transaksi.getText().toString());
+                    txt_kelipatan.setText(Integer.toString(myValue));
+                    txt_pd_nominaltransaksi.setText(Integer.toString(nom));
+                }
+            }
+        });
     }
 
     private void getJSON() {
@@ -127,7 +163,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
             txt_pd_jatuh_tempo.setText(jatuh_tempo);
             txt_pd_minimum_transaksi.setText("Rp " + minimum_transaksi);
             txt_pd_maksimum_transaksi.setText("Rp " + maksimum_transaksi);
-            txt_pd_kelipatan_transaksi.setText("Rp " + kelipatan_transaksi);
+            txt_pd_kelipatan_transaksi.setText(kelipatan_transaksi);
             txt_pd_penerbit.setText(penerbit);
 //            txt_pd_jenis_kupon.setText(jenis_kupon);
 //            txt_pd_mata_uang.setText(mata_uang);
@@ -144,14 +180,14 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onClick(View view) {
-        if (view == btn_beli) {
-            confirmBuyProduct();
-        } else {
-            Toast.makeText(getApplicationContext(), "Potential Other Button", Toast.LENGTH_SHORT).show();
-        }
-    }
+//    @Override
+//    public void onClick(View view) {
+//        if (view == btn_beli) {
+//            confirmBuyProduct();
+//        } else {
+//            Toast.makeText(getApplicationContext(), "Potential Other Button", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
     private void confirmBuyProduct() {
         // Show confirmation alert dialogue
@@ -233,4 +269,8 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         return true;
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
 }
