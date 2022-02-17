@@ -6,8 +6,10 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,18 +23,26 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 public class ProductDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
+    // session
+    public static final String SHARED_PREFS = "shared_prefs";
+    public static final String ID_KEY = "id_key";
+
     TextView txt_pd_seri_produk, txt_pd_nama_produk, txt_pd_nominaltransaksi, txt_kelipatan, txt_pd_nilai_unit, txt_pd_yield, txt_pd_jatuh_tempo, txt_pd_minimum_transaksi, txt_pd_maksimum_transaksi, txt_pd_kelipatan_transaksi, txt_pd_penerbit, txt_pd_jenis_kupon, txt_pd_mata_uang, txt_pd_pembayaran_kupon;
     Button btn_beli, btn_plus, btn_minus;
-    String id_produk;
+    String id_produk, id;
     Toolbar toolbar;
+    SharedPreferences sharedpreferences;
     private int myValue = 0; // nilai awal
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
 
@@ -55,7 +65,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
 //        txt_pd_jenis_kupon = findViewById(R.id.txt_pd_jenis_kupon);
 //        txt_pd_mata_uang = findViewById(R.id.txt_pd_mata_uang);
 //        txt_pd_pembayaran_kupon = findViewById(R.id.txt_pd_pembayaran_kupon);
-//        btn_beli = findViewById(R.id.btn_beli);
+        btn_beli = findViewById(R.id.btn_beli);
 
         btn_plus = findViewById(R.id.btn_plus);
         btn_minus = findViewById(R.id.btn_minus);
@@ -94,6 +104,13 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
                     txt_kelipatan.setText(Integer.toString(myValue));
                     txt_pd_nominaltransaksi.setText(Integer.toString(nom));
                 }
+            }
+        });
+
+        btn_beli.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                confirmBuyProduct();
             }
         });
     }
@@ -190,18 +207,19 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
 //    }
 
     private void confirmBuyProduct() {
+        final String nominal_transaksi = txt_pd_nominaltransaksi.getText().toString().trim();
+
         // Show confirmation alert dialogue
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Memperbarui data instruktur");
-        builder.setMessage("Apakah anda ingin memperbarui instruktur ini ?");
+        builder.setTitle("Konfirmasi pembelian obligasi");
+        builder.setMessage("Total nominal : " + nominal_transaksi);
         builder.setIcon(getResources().getDrawable(android.R.drawable.ic_input_add));
         builder.setCancelable(false);
         builder.setNegativeButton("Cancel", null);
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(getApplicationContext(), "Buy product", Toast.LENGTH_SHORT).show();
-                // buyProduct();
+                buyProduct();
             }
         });
 
@@ -209,60 +227,62 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         dialog.show();
     }
 
-    //    private void buyProduct() {
-//        final String nama_ins = edit_nama_ins.getText().toString().trim();
-//        final String email_ins = edit_email_ins.getText().toString().trim();
-//        final String hp_ins = edit_hp_ins.getText().toString().trim();
-//
-//        class BuyProduct extends AsyncTask<Void, Void, String> {
-//            ProgressDialog loading;
-//
-//            @Override
-//            protected void onPreExecute() {
-//                super.onPreExecute();
-//                loading = ProgressDialog.show(InstrukturTambahActivity.this,
-//                        "Menyimpan Obligasi",
-//                        "Harap Tunggu ...",
-//                        false,
-//                        false);
-//            }
-//
-//            @Override
-//            protected String doInBackground(Void... voids) {
-//                // Create hashmap to store values which will be sent to HttpHandler
-//                HashMap<String, String> params = new HashMap<>();
-//                params.put("nama_ins", nama_ins);
-//                params.put("email_ins", email_ins);
-//                params.put("hp_ins", hp_ins);
-//                HttpHandler handler = new HttpHandler();
-//
-//                // Create HttpHandler to send data with sendPostRequest
-//                String result = handler.sendPostRequest(Configuration.URL_INSTRUKTUR_ADD, params);
-//                return result;
-//            }
-//
-//            @Override
-//            protected void onPostExecute(String s) {
-//                super.onPostExecute(s);
-//                loading.dismiss();
-//                Toast.makeText(
-//                        ProductDetailActivity.this,
-//                        "pesan:" + s,
-//                        Toast.LENGTH_SHORT)
-//                        .show();
-//            }
-//        }
-//        BuyProduct buyProduct = new BuyProduct();
-//        buyProduct.execute();
-//
-//        // Back to home after add process
-//        // startActivity(new Intent(InstrukturTambahActivity.this, MainActivity.class));
-//
-//        // Back to instruktur fragment after add process
-//        Intent myIntent = new Intent(ProductDetailActivity.this, MainActivity.class);
-//        myIntent.putExtra("KeyName", "Instruktur");
-//        startActivity(myIntent);
-//    }
+    private void buyProduct() {
+        Intent receiveIntent = getIntent();
+        Date date = new Date();
+        sharedpreferences = getApplicationContext().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        id = sharedpreferences.getString(ID_KEY, null);
+
+        final String id_detail_user  = id;
+        final String id_produk = receiveIntent.getStringExtra(Configuration.PGW_ID);
+        final String tgl_beli = new SimpleDateFormat("yyyy-MM-dd").format(date);
+        final String harga_unit = txt_pd_kelipatan_transaksi.getText().toString().trim();
+        final String jumlah_unit = txt_kelipatan.getText().toString().trim();
+
+        class BuyProduct extends AsyncTask<Void, Void, String> {
+            ProgressDialog loading;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(ProductDetailActivity.this,
+                        "Menyimpan Obligasi",
+                        "Harap Tunggu ...",
+                        false,
+                        false);
+            }
+
+            @Override
+            protected String doInBackground(Void... voids) {
+                // Create hashmap to store values which will be sent to HttpHandler
+                HashMap<String, String> params = new HashMap<>();
+                params.put("id_detail_user", id_detail_user);
+                params.put("id_produk", id_produk);
+                params.put("tgl_beli", tgl_beli);
+                params.put("harga_unit", harga_unit);
+                params.put("jumlah_unit", jumlah_unit);
+                HttpHandler handler = new HttpHandler();
+
+                // Create HttpHandler to send data with sendPostRequest
+                String result = handler.sendPostRequest(Configuration.URL_ADD_PRODUCT, params);
+                return result;
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                loading.dismiss();
+                Log.d("Pesan", s);
+            }
+        }
+        BuyProduct buyProduct = new BuyProduct();
+        buyProduct.execute();
+
+        // Back to home after add process
+        startActivity(new Intent(ProductDetailActivity.this, MainActivity.class));
+
+    }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();

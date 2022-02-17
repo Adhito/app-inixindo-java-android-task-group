@@ -13,8 +13,17 @@
         android:theme="@style/Theme.ProjectGroup"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".SplashScreenActivity"
+            android:name=".TopUpActivity"
             android:exported="false" />
+        <activity
+            android:name=".SplashScreenActivity"
+            android:exported="true" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity
             android:name=".DetailPortofolioActivity"
             android:exported="false" />
@@ -29,13 +38,7 @@
             android:exported="false" />
         <activity
             android:name=".LoginFormActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true" />
     </application>
 
 </manifest>

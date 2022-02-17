@@ -46,7 +46,6 @@ public class ProductsFragment extends Fragment {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getContext(), "Test List View", Toast.LENGTH_SHORT).show();
                 Intent myIntent = new Intent(getActivity(), ProductDetailActivity.class);
                 HashMap<String, String> map = (HashMap) parent.getItemAtPosition(position);
                 String id_product = map.get(Configuration.TAG_JSON_ID_PRODUCT).toString();
