@@ -42,6 +42,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
     String id_produk, id, balance, kt_cal;
     Toolbar toolbar;
     SharedPreferences sharedpreferences;
+    Integer nom = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +82,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onClick(View v) {
                 myValue++;
-                int nom = myValue * Integer.valueOf(kt_cal);
+                nom = myValue * Integer.valueOf(kt_cal);
                 if (txt_kelipatan != null) {
                     txt_kelipatan.setText(Integer.toString(myValue));
                     txt_pd_nominaltransaksi.setText(formatRupiah(Double.parseDouble(Integer.toString(nom))));
@@ -95,13 +96,13 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
                 int in = Integer.valueOf(txt_kelipatan.getText().toString());
                 if (in <= 0) {
                     myValue = 0;
-                    int nom = myValue * Integer.valueOf(kt_cal);
+                    nom = myValue * Integer.valueOf(kt_cal);
                     txt_kelipatan.setText(Integer.toString(myValue));
                     txt_pd_nominaltransaksi.setText(formatRupiah(Double.parseDouble(Integer.toString(nom))));
                 }
                 else {
                     myValue--;
-                    int nom = myValue * Integer.valueOf(kt_cal);
+                    nom = myValue * Integer.valueOf(kt_cal);
                     txt_kelipatan.setText(Integer.toString(myValue));
                     txt_pd_nominaltransaksi.setText(formatRupiah(Double.parseDouble(Integer.toString(nom))));
                 }
@@ -209,7 +210,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         sharedpreferences = getApplicationContext().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         balance = sharedpreferences.getString(BALANCE_KEY, null);
 
-        final double total_transaction = Integer.parseInt(txt_pd_nominaltransaksi.getText().toString().trim());
+        final double total_transaction = nom;
         final double current_balance = Integer.parseInt(balance);
 
 
@@ -235,7 +236,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         sharedpreferences = getApplicationContext().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         balance = sharedpreferences.getString(BALANCE_KEY, null);
 
-        final double total_transaction = Integer.parseInt(txt_pd_nominaltransaksi.getText().toString().trim());
+        final double total_transaction = nom;
         final double current_balance = Integer.parseInt(balance);
 
         // With Validation
@@ -257,7 +258,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         final String id_detail_user  = id;
         final String id_produk = receiveIntent.getStringExtra(Configuration.PGW_ID);
         final String tgl_beli = new SimpleDateFormat("yyyy-MM-dd").format(date);
-        final String harga_unit = txt_pd_kelipatan_transaksi.getText().toString().trim();
+        final String harga_unit = kt_cal;
         final String jumlah_unit = txt_kelipatan.getText().toString().trim();
 
         class BuyProduct extends AsyncTask<Void, Void, String> {

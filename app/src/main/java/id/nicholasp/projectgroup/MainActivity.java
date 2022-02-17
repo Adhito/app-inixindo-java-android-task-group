@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.nav_coupon:
                 fid = 3;
-                getSupportActionBar().setTitle("Coupon Calendar");
+                getSupportActionBar().setTitle("Coupon");
                 fragment = new CouponFragment();
                 break;
             case R.id.nav_more:
