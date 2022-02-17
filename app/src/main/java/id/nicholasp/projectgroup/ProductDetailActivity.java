@@ -114,7 +114,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
             String jatuh_tempo = object.getString("jatuh_tempo");
             String minimum_transaksi = object.getString("minimum_transaksi");
             String maksimum_transaksi = object.getString("maksimum_transaksi");
-//            String kelipatan_transaksi = object.getString("kelipatan_transaksi");
+            String kelipatan_transaksi = object.getString("kelipatan_transaksi");
             String penerbit = object.getString("penerbit");
 //            String jenis_kupon = object.getString("jenis_kupon");
 //            String mata_uang = object.getString("mata_uang");
@@ -125,9 +125,9 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
 //            txt_pd_nilai_unit.setText(nilai_unit);
 //            txt_pd_yield.setText(yield);
             txt_pd_jatuh_tempo.setText(jatuh_tempo);
-            txt_pd_minimum_transaksi.setText(minimum_transaksi);
-            txt_pd_maksimum_transaksi.setText(maksimum_transaksi);
-//            txt_pd_kelipatan_transaksi.setText(kelipatan_transaksi);
+            txt_pd_minimum_transaksi.setText("Rp " + minimum_transaksi);
+            txt_pd_maksimum_transaksi.setText("Rp " + maksimum_transaksi);
+            txt_pd_kelipatan_transaksi.setText("Rp " + kelipatan_transaksi);
             txt_pd_penerbit.setText(penerbit);
 //            txt_pd_jenis_kupon.setText(jenis_kupon);
 //            txt_pd_mata_uang.setText(mata_uang);

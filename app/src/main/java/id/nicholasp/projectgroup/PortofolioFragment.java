@@ -80,9 +80,6 @@ public class PortofolioFragment extends Fragment {
             @Override
             protected void onPreExecute() { // sebelum proses
                 super.onPreExecute();
-                loading = ProgressDialog.show(getActivity(),
-                        "Mengambil Data","Harap Menunggu...",
-                        false,false);
             }
 
             @Override
@@ -95,7 +92,6 @@ public class PortofolioFragment extends Fragment {
             @Override
             protected void onPostExecute(String message) { // setelah proses
                 super.onPostExecute(message);
-                loading.dismiss();
                 displayDetailData(message);
             }
         }
