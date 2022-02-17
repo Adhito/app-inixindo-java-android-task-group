@@ -21,7 +21,6 @@
             android:textColor="#FFF"
             android:textSize="20sp"
             android:textStyle="bold" />
-
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
@@ -38,80 +37,111 @@
                 android:id="@+id/txt_r_sid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxLength="11"
                 android:inputType="number" />
 
-            <com.google.android.material.textfield.TextInputLayout
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nama"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            app:boxBackgroundColor="#FFF">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txt_r_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            app:boxBackgroundColor="#FFF">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txt_r_mail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textWebEmailAddress" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txt_r_phone"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            app:boxBackgroundColor="#FFF">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:maxLength="13" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            app:boxBackgroundColor="#FFF">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txt_r_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+       <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+           android:layout_marginLeft="30dp"
+           android:layout_marginRight="30dp"
+            app:boxBackgroundColor="#FFF">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txt_r_pass"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nama"
-                app:boxBackgroundColor="#FFF">
+                android:inputType="textPassword" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txt_r_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Email"
-                    app:boxBackgroundColor="#FFF">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/txt_r_mail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Retype Password"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            app:boxBackgroundColor="#FFF">
 
-                        android:inputType="textWebEmailAddress" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txt_r_re_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Username"
-                        app:boxBackgroundColor="#FFF">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/txt_r_user"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="textPersonName" />
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:hint="Password"
-                            app:boxBackgroundColor="#FFF">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/txt_r_pass"
-                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="textPassword" />
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:hint="Retype Password"
-                                app:boxBackgroundColor="#FFF">
-
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/txt_r_re_pass"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:inputType="textPassword" />
-
-                            </com.google.android.material.textfield.TextInputLayout>
-                        </com.google.android.material.textfield.TextInputLayout>
-                    </com.google.android.material.textfield.TextInputLayout>
-                </com.google.android.material.textfield.TextInputLayout>
-            </com.google.android.material.textfield.TextInputLayout>
         </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
@@ -142,4 +172,5 @@
         </LinearLayout>
 
     </LinearLayout>
+
 </layout>
