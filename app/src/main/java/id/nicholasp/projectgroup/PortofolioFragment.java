@@ -34,6 +34,7 @@ public class PortofolioFragment extends Fragment {
     public static final String SID_KEY = "sid_key";
     public static final String EMAIL_KEY = "email_key";
     public static final String HP_KEY = "hp_key";
+    public static final String BALANCE_KEY = "balance_key";
 
     SharedPreferences sharedpreferences;
     String myStr, sendBalance;
@@ -140,6 +141,7 @@ public class PortofolioFragment extends Fragment {
             editor.putString(EMAIL_KEY, email);
             editor.putString(SID_KEY, sid);
             editor.putString(HP_KEY, hp);
+            editor.putString(BALANCE_KEY, balance);
             editor.apply();
 
             txtRNama.setText(nama);
