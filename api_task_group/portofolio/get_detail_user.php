@@ -7,8 +7,8 @@
 	
 	//Membuat SQL Query
 	$sql = "SELECT a.id_user, a.username, a.password, 
-    b.id_detail_user, b.sid, b.nama, b.email, b.balance,
-	IFNULL((SELECT SUM(c.total_beli) FROM `beli` c WHERE c.id_detail_user = b.id_detail_user),0) total
+    b.id_detail_user, b.sid, b.nama, b.email, b.balance, b.no_hp,
+	IFNULL((SELECT SUM(c.harga_unit * c.jumlah_unit) FROM `beli` c WHERE c.id_detail_user = b.id_detail_user),0) total
     FROM user a
     JOIN detail_user b ON a.id_user = b.id_user    
     WHERE username = '$user'";
@@ -31,6 +31,7 @@
 			"nama"=>$row['nama'],
             "email"=>$row['email'],
 			"balance"=>$row['balance'],
+			"no_hp"=>$row['no_hp'],
 			"total"=>$row['total']
 		));
 	}

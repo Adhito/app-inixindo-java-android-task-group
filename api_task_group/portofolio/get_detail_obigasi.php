@@ -1,17 +1,16 @@
 <?php 
 	//Mendapatkan Nilai Dari Variable ID Pegawai yang ingin ditampilkan
-	$user = $_GET['user'] ?? null;
+	$user = $_GET['user'];
 
 	//Import File Koneksi Database
 	require_once('../koneksi.php');
 	
 	//Membuat SQL Query
-	$sql = "SELECT du.id_detail_user, du.nama,p.seri_produk, p.nama_produk, SUM(db.jumlah_unit) total, db.harga_beli
+	$sql = "SELECT du.id_detail_user, du.nama,p.seri_produk, p.nama_produk, SUM(b.jumlah_unit) total, b.harga_unit
     FROM detail_user du
     JOIN user us ON du.id_user = us.id_user
     JOIN beli b ON du.id_detail_user = b.id_detail_user
-    JOIN detail_beli db ON b.id_beli = db.id_beli
-    JOIN produk p ON db.id_produk = p.id_produk
+    JOIN produk p ON b.id_produk = p.id_produk
     WHERE username = '$user'
     GROUP BY p.id_produk";
 	
@@ -30,7 +29,7 @@
 			"seri_produk"=>$row['seri_produk'],
 			"nama_produk"=>$row['nama_produk'],
             "total"=>$row['total'],
-			"harga_beli"=>$row['harga_beli']
+			"harga_unit"=>$row['harga_unit']
 		));
 	}
 	
