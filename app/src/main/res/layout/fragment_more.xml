@@ -52,6 +52,36 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
+                android:id="@+id/cv_update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:cardElevation="6dp"
+                app:cardCornerRadius="12dp"
+                android:layout_margin="20dp">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="1dp"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_marginTop="10dp"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/update"/>
+                    <TextView
+                        android:layout_marginTop="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:text="Update Data"
+                        android:textColor="#6f6f6f"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
                 android:id="@+id/cv_about_us"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -81,6 +111,7 @@
                         android:textColor="#6f6f6f"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_logout"
                 android:layout_width="wrap_content"
@@ -111,6 +142,7 @@
                         android:textColor="#6f6f6f"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
 
         </androidx.gridlayout.widget.GridLayout>
     </LinearLayout>
