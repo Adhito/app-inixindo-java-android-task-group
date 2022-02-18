@@ -8,10 +8,10 @@
 	
 	//Membuat SQL Query
 	$sql = "SELECT seri_produk, yield*harga_unit*jumlah_unit/100 as kupon, tgl_kupon
-			from kupon k join produk p
-			on k.id_produk = p.id_produk
-			join beli b
-			on k.id_beli = b.id_beli
+			from kupon k join beli b 
+			on b.id_beli = k.id_beli
+			join produk p
+			on p.id_produk = b.id_produk
 			where b.id_detail_user=$id_detail_user
 			order by 3;";
 			

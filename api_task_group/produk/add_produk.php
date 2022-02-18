@@ -18,7 +18,7 @@
 								WHERE du.id_detail_user = $id_detail_user)
 				where du.id_detail_user=$id_detail_user";
 
-		$sql3 ="INSERT INTO kupon(id_detail_user, id_produk, id_beli, tgl_kupon)
+		$sql3 ="INSERT INTO kupon(id_beli, tgl_kupon)
 		WITH RECURSIVE t as (
 				SELECT DATE_FORMAT((select tgl_beli from beli where id_beli in (select max(id_beli) from beli where id_detail_user=$id_detail_user)), '%Y-%m-%d') as dt
 			  UNION
@@ -27,7 +27,7 @@
 							on p.id_produk=b.id_produk
 							where id_beli in (select max(id_beli) from beli where id_detail_user=$id_detail_user))
 			)
-			select id_detail_user, beli.id_produk, beli.id_beli, dt
+			select beli.id_beli, dt
 			from t join beli join produk on beli.id_produk=produk.id_produk
 			where id_beli in (select max(id_beli) from beli where id_detail_user=$id_detail_user) LIMIT 18446744073709551615 OFFSET 1;";
 
