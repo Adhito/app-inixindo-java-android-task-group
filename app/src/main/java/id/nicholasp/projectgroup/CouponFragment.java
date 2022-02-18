@@ -9,11 +9,14 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -21,8 +24,10 @@ import android.widget.SimpleAdapter;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 
 
 public class CouponFragment extends Fragment {
@@ -32,9 +37,10 @@ public class CouponFragment extends Fragment {
 
     private ProgressDialog loading;
     private String JSON_STRING;
-    String id_detail_user;
+    String id_detail_user, search_txt;
     ListView listview;
     SharedPreferences sharedpreferences;
+    EditText search;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -82,7 +88,26 @@ public class CouponFragment extends Fragment {
         id_detail_user = sharedpreferences.getString(ID_KEY, null);
 
         listview = view.findViewById(R.id.listViewCoupon);
+        search = view.findViewById(R.id.txt_search);
         getJsonData();
+
+        search.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                search_txt = search.getText().toString();
+                getJsonSearchData(search_txt);
+            }});
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -129,6 +154,36 @@ public class CouponFragment extends Fragment {
         getJsonData.execute();
     }
 
+    public void getJsonSearchData(String str) {
+        class GetJsonSearchData extends AsyncTask<Void, Void, String> {
+            String str_ct = "%" + str + "%";
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+//                loading = ProgressDialog.show(getContext(), "Ambil Data Instruktur", "Harap menunggu...", false, false);
+            }
+
+            @Override
+            protected String doInBackground(Void... voids) {
+                HttpHandler handler = new HttpHandler();
+                String result = handler.sendGetRespCoupon(Configuration.URL_GET_ALL_COUPON_SEARCH, id_detail_user, str_ct);
+                return result;
+            }
+
+            @Override
+            protected void onPostExecute(String message) {
+                super.onPostExecute(message);
+                JSON_STRING = message;
+                Log.d("DATA_JSON: ", JSON_STRING);
+
+                // menampilkan data json kedalam list view
+                displayAllData();
+            }
+        }
+        GetJsonSearchData getJsonSearchData = new GetJsonSearchData();
+        getJsonSearchData.execute();
+    }
+
     private void displayAllData() {
         JSONObject jsonObject = null;
         ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
@@ -145,7 +200,7 @@ public class CouponFragment extends Fragment {
 
                 HashMap<String, String> coupon = new HashMap<>();
                 coupon.put("seri_produk", seri_produk);
-                coupon.put("kupon", kupon);
+                coupon.put("kupon", formatRupiah(Double.parseDouble(kupon)));
                 coupon.put("tgl_kupon", tgl_kupon);
                 list.add(coupon);
             }
@@ -162,6 +217,11 @@ public class CouponFragment extends Fragment {
         listview.setAdapter(adapter);
 
 
+    }
+    private String formatRupiah(Double number){
+        Locale localeID = new Locale("in", "ID");
+        NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
+        return formatRupiah.format(number);
     }
 
 }

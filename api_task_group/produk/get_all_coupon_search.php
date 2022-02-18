@@ -12,7 +12,7 @@
 			on b.id_beli = k.id_beli
 			join produk p
 			on p.id_produk = b.id_produk
-			where b.id_detail_user=$id_detail_user AND p.seri_produk LIKE '%$search_txt%'
+			where b.id_detail_user=$id_detail_user AND p.seri_produk LIKE '$search_txt'
 			order by 3;";
 	
 	//Mendapatkan Hasil

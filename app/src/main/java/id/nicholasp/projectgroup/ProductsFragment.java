@@ -136,6 +136,7 @@ public class ProductsFragment extends Fragment {
             @Override
             protected String doInBackground(Void... voids) {
                 HttpHandler handler = new HttpHandler();
+                Log.d("SEARCH", "Search: " + str_ct);
                 String result = handler.sendGetResponse(Configuration.URL_GET_ALL_PRODUCT_SEARCH, str_ct);
                 return result;
             }
