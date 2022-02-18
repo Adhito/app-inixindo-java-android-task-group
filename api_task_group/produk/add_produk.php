@@ -20,16 +20,16 @@
 
 		$sql3 ="INSERT INTO kupon(id_detail_user, id_produk, id_beli, tgl_kupon)
 		WITH RECURSIVE t as (
-				SELECT DATE_FORMAT((select tgl_beli from beli where id_beli in (select max(id_beli) from beli where id_detail_user=2)), '%Y-%m-%d') as dt
+				SELECT DATE_FORMAT((select tgl_beli from beli where id_beli in (select max(id_beli) from beli where id_detail_user=$id_detail_user)), '%Y-%m-%d') as dt
 			  UNION
 				SELECT DATE_ADD(t.dt, INTERVAL 6 month) FROM t WHERE DATE_ADD(t.dt, INTERVAL 6 month) between dt and (select jatuh_tempo 
 							from produk p join beli b
 							on p.id_produk=b.id_produk
-							where id_beli in (select max(id_beli) from beli where id_detail_user=2))
+							where id_beli in (select max(id_beli) from beli where id_detail_user=$id_detail_user))
 			)
 			select id_detail_user, beli.id_produk, beli.id_beli, dt
 			from t join beli join produk on beli.id_produk=produk.id_produk
-			where id_beli in (select max(id_beli) from beli where id_detail_user=2) LIMIT 18446744073709551615 OFFSET 1;";
+			where id_beli in (select max(id_beli) from beli where id_detail_user=$id_detail_user) LIMIT 18446744073709551615 OFFSET 1;";
 
 		$sql4 = "DELETE from kupon where tgl_kupon = CURDATE() AND id_detail_user=$id_detail_user;";
 
