@@ -8,12 +8,15 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -30,9 +33,11 @@ import java.util.Locale;
 
 public class ProductsFragment extends Fragment {
     private ProgressDialog loading;
-    private String JSON_STRING;
+    String JSON_STRING, search_txt;
     ListView listview;
     Button btn_beli;
+    EditText search;
+    String url = "http://172.20.10.3/api_task_group/produk/get_all_produk_search.php?search_txt=";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,7 +47,26 @@ public class ProductsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_products, container, false);
 
         listview = view.findViewById(R.id.listViewProduct);
+        search = view.findViewById(R.id.txt_search);
         getJsonData();
+
+        search.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                search_txt = search.getText().toString();
+                getJsonSearchData(search_txt);
+            }});
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -99,6 +123,36 @@ public class ProductsFragment extends Fragment {
         }
         GetJsonData getJsonData = new GetJsonData();
         getJsonData.execute();
+    }
+
+    public void getJsonSearchData(String str) {
+        class GetJsonSearchData extends AsyncTask<Void, Void, String> {
+            String str_ct = "%" + str + "%";
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+//                loading = ProgressDialog.show(getContext(), "Ambil Data Instruktur", "Harap menunggu...", false, false);
+            }
+
+            @Override
+            protected String doInBackground(Void... voids) {
+                HttpHandler handler = new HttpHandler();
+                String result = handler.sendGetResponse(url, str_ct);
+                return result;
+            }
+
+            @Override
+            protected void onPostExecute(String message) {
+                super.onPostExecute(message);
+                JSON_STRING = message;
+                Log.d("DATA_JSON: ", JSON_STRING);
+
+                // menampilkan data json kedalam list view
+                displayAllData();
+            }
+        }
+        GetJsonSearchData getJsonSearchData = new GetJsonSearchData();
+        getJsonSearchData.execute();
     }
 
     private void displayAllData() {
