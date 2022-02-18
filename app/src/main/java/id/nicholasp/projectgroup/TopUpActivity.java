@@ -23,7 +23,7 @@ public class TopUpActivity extends AppCompatActivity {
     public static final String SHARED_PREFS = "shared_prefs";
     public static final String ID_KEY = "id_key";
 
-    String myStr,balance;
+    String myStr,balance,get_balance;
     SharedPreferences sharedpreferences;
     EditText add_balance;
     Button btn_topup_add, btn_topup_cancel;
@@ -49,9 +49,13 @@ public class TopUpActivity extends AppCompatActivity {
         btn_topup_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (add_balance.getText().toString().equals("")){
-                    Toast.makeText(TopUpActivity.this, "Nominal Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
-                } else {
+                get_balance = add_balance.getText().toString();
+                if (get_balance.equals("") || get_balance.equals("0")){
+                    Toast.makeText(TopUpActivity.this, "Nominal Tidak Boleh Kosong Atau 0", Toast.LENGTH_SHORT).show();
+                } else if  (Long.parseLong(get_balance) < 100000) {
+                    Toast.makeText(TopUpActivity.this, "Minimal Top Up Rp 100.000", Toast.LENGTH_SHORT).show();
+                }
+                else {
                     addBalance();
                 }
             }

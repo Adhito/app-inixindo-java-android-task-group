@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 public class MoreFragment extends Fragment {
-    CardView cv_top_up, cv_about_us, cv_logout;
+    CardView cv_top_up, cv_about_us, cv_logout, cv_update;
     public static final String SHARED_PREFS = "shared_prefs";
     SharedPreferences sharedpreferences;
 
@@ -29,11 +29,19 @@ public class MoreFragment extends Fragment {
         cv_top_up = view.findViewById(R.id.cv_top_up);
         cv_about_us = view.findViewById(R.id.cv_about_us);
         cv_logout = view.findViewById(R.id.cv_logout);
+        cv_update = view.findViewById(R.id.cv_Update);
 
         cv_top_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(),TopUpActivity.class));
+            }
+        });
+
+        cv_update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),UpdateProfileActivity.class));
             }
         });
 

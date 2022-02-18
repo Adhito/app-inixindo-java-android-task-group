@@ -8,6 +8,7 @@ public class ConfigurationPortofolio {
         public static final String URL_GET_USER = String.format("http://%s/api_task_group/portofolio/get_detail_user.php?user=", ip_adress);
         public static final String URL_GET_DETAIL_PORTOFOLIO = String.format("http://%s/api_task_group/portofolio/get_detail_obigasi.php?user=", ip_adress);
         public static final String URL_ADD_BALANCE = String.format("http://%s/api_task_group/portofolio/add_balance.php", ip_adress);
+        public static final String URL_EDIT_PROFILE = String.format("http://%s/api_task_group/portofolio/edit_profile.php", ip_adress);
 
         // KEY Login
         public static final String KEY_LOG_USER_ID = "id_user";
