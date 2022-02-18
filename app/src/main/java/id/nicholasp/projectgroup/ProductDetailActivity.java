@@ -12,6 +12,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,7 +39,8 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
     public static final String BALANCE_KEY = "balance_key";
     private int myValue = 0; // nilai awal
 
-    TextView txt_pd_seri_produk, txt_pd_nama_produk, txt_pd_nominaltransaksi, txt_kelipatan, txt_pd_nilai_unit, txt_pd_yield, txt_pd_jatuh_tempo, txt_pd_minimum_transaksi, txt_pd_maksimum_transaksi, txt_pd_kelipatan_transaksi, txt_pd_penerbit, txt_pd_jenis_kupon, txt_pd_mata_uang, txt_pd_pembayaran_kupon;
+    TextView txt_pd_seri_produk, txt_pd_nama_produk, txt_pd_nominaltransaksi, txt_pd_jatuh_tempo, txt_pd_minimum_transaksi, txt_pd_maksimum_transaksi, txt_pd_kelipatan_transaksi, txt_pd_penerbit;
+    EditText txt_kelipatan;
     Button btn_beli, btn_plus, btn_minus;
     String id_produk, id, balance, kt_cal;
     Toolbar toolbar;
@@ -78,6 +81,29 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
 
         getJSON();
 
+        txt_kelipatan.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                if(s.length() != 0)
+                    myValue = Integer.parseInt(txt_kelipatan.getText().toString());
+                    nom = myValue * Integer.valueOf(kt_cal);
+                    txt_pd_nominaltransaksi.setText(formatRupiah(Double.parseDouble(Integer.toString(nom))));
+//                    field2.setText("");
+//                    Toast.makeText(ProductDetailActivity.this, txt_kelipatan.getText().toString(),
+//                            Toast.LENGTH_LONG).show();
+            }
+        });
+
         btn_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,18 +119,23 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         btn_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int in = Integer.valueOf(txt_kelipatan.getText().toString());
-                if (in <= 0) {
-                    myValue = 0;
-                    nom = myValue * Integer.valueOf(kt_cal);
-                    txt_kelipatan.setText(Integer.toString(myValue));
-                    txt_pd_nominaltransaksi.setText(formatRupiah(Double.parseDouble(Integer.toString(nom))));
+                if (txt_kelipatan.getText().toString().equals("")) {
+                    txt_kelipatan.setText("0");
                 }
                 else {
-                    myValue--;
-                    nom = myValue * Integer.valueOf(kt_cal);
-                    txt_kelipatan.setText(Integer.toString(myValue));
-                    txt_pd_nominaltransaksi.setText(formatRupiah(Double.parseDouble(Integer.toString(nom))));
+                    int in = Integer.valueOf(txt_kelipatan.getText().toString());
+                    if (in <= 0) {
+                        myValue = 0;
+                        nom = myValue * Integer.valueOf(kt_cal);
+                        txt_kelipatan.setText(Integer.toString(myValue));
+                        txt_pd_nominaltransaksi.setText(formatRupiah(Double.parseDouble(Integer.toString(nom))));
+                    }
+                    else {
+                        myValue--;
+                        nom = myValue * Integer.valueOf(kt_cal);
+                        txt_kelipatan.setText(Integer.toString(myValue));
+                        txt_pd_nominaltransaksi.setText(formatRupiah(Double.parseDouble(Integer.toString(nom))));
+                    }
                 }
             }
         });

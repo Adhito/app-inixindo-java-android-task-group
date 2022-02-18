@@ -18,8 +18,8 @@
         android:icon="@drawable/trend"/>
     <item
         android:id="@+id/nav_coupon"
-        android:title="E-Statement"
-        android:icon="@drawable/mail"/>
+        android:title="Coupon"
+        android:icon="@drawable/coupon"/>
     <item
         android:id="@+id/nav_more"
         android:title="More"
