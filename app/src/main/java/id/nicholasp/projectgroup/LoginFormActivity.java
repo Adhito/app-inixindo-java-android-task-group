@@ -89,6 +89,7 @@ public class LoginFormActivity extends AppCompatActivity {
     }
 
     private void getData() {
+        String pass_encryp = Encryption.MD5(password);
         class GetData extends AsyncTask<Void, Void, String> {
             ProgressDialog loading;
 
@@ -109,8 +110,8 @@ public class LoginFormActivity extends AppCompatActivity {
                 hashMap.put("pass", password);
 
 //                String result = handler.sendPostRequest(Konfigurasi.URL_GET_LOGIN,hashMap);
-                String result = handler.sendGetRespLogin(ConfigurationLogin.URL_GET_LOGIN,user,password);
-                Log.d("res:", result + " user: " + user +" pass: " + password);
+                String result = handler.sendGetRespLogin(ConfigurationLogin.URL_GET_LOGIN,user,pass_encryp);
+                Log.d("res:", result + " user: " + user +" pass: " + password + " MD5: "+ pass_encryp);
 
                 return result;
             }
