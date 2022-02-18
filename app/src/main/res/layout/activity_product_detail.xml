@@ -11,409 +11,422 @@
         android:layout_height="wrap_content"
         android:background="@drawable/home_toolbar"
         android:minHeight="?attr/actionBarSize"
-        app:title="Detail Produk"
-        android:theme="?attr/actionBarTheme" />
+        android:theme="?attr/actionBarTheme"
+        app:title="Detail Produk" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="580dp"
-        android:layout_marginTop="58dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/custom_border"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txt_pd_nama_produk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_weight="1"
-                android:text="Nama_produk"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="58dp"
+            android:background="@drawable/cardviewstyle"
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_border"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/txt_pd_jatuh_tempo"
+                    android:id="@+id/txt_pd_nama_produk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
-                    android:gravity="end"
-                    android:text="Jatuh Tempo"
-                    android:textAlignment="textEnd"
+                    android:layout_weight="1"
+                    android:text="Nama_produk"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/textView13"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:text="Jatuh Tempo"
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                    android:background="@drawable/custom_border"
+                    android:gravity="right"
+                    android:orientation="vertical">
 
-        </LinearLayout>
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="10dp"
+                        android:text="Jatuh Tempo"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/custom_border"
-            android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/txt_pd_jatuh_tempo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="end"
+                        android:text="Jatuh Tempo"
+                        android:textAlignment="textEnd"
+                        android:textColor="#FF0800"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/custom_border"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/txt_pd_minimum_transaksiTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="18dp"
-                    android:text="Minimum"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt_pd_minimum_transaksiTitle2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="48dp"
-                    android:layout_marginBottom="18dp"
-                    android:text="Transaksi"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/txt_pd_minimum_transaksi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:text="Minimum_transaksi"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/custom_border"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/custom_border"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/txt_pd_maksimum_transaksiTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="18dp"
-                    android:text="Maksimum"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt_pd_maksimum_transaksiTitle2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="48dp"
-                    android:layout_marginBottom="18dp"
-                    android:text="Transaksi"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/txt_pd_maksimum_transaksi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:text="Maksimum_transaksi"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/custom_border"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/custom_border"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/txt_pd_kelipatan_transaksiTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="18dp"
-                    android:text="Kelipatan"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt_pd_kelipatan_transaksiTitle2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="48dp"
-                    android:layout_marginBottom="18dp"
-                    android:text="Transaksi"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/txt_pd_kelipatan_transaksi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:text="Kelipatan_transaksi"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/custom_border"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/custom_border"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/txt_pd_penerbitTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginRight="59dp"
-                    android:layout_marginBottom="25dp"
-                    android:text="Penerbit"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/txt_pd_penerbit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:text="Penerbit"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/custom_border"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/custom_border"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/txt_pd_kelipatanTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginRight="52dp"
-                    android:layout_marginBottom="25dp"
-                    android:text="Kelipatan"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:orientation="vertical">
-
-                <EditText
-                    android:id="@+id/txt_pd_kelipatan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:text="0"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:inputType="number"/>
+                </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="right">
-
-                <Button
-                    android:id="@+id/btn_plus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="+" />
-
-                <Button
-                    android:id="@+id/btn_minus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="-" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/custom_border"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_border"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/txt_pd_nominaltransaksiTitle"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="129dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginRight="59dp"
-                    android:layout_marginBottom="25dp"
-                    android:text="Nominal"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:background="@drawable/custom_border"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txt_pd_minimum_transaksiTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="18dp"
+                        android:text="Minimum"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txt_pd_minimum_transaksiTitle2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginBottom="18dp"
+                        android:text="Transaksi"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txt_pd_minimum_transaksi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:text="Minimum_transaksi"
+                        android:textColor="#FF0800"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:orientation="vertical">
+                android:background="@drawable/custom_border"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/txt_pd_nominaltransaksi"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="129dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:text="0"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:background="@drawable/custom_border"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txt_pd_maksimum_transaksiTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="18dp"
+                        android:text="Maksimum"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txt_pd_maksimum_transaksiTitle2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginBottom="18dp"
+                        android:text="Transaksi"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txt_pd_maksimum_transaksi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:text="Maksimum_transaksi"
+                        android:textColor="#FF0800"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/custom_border"
-            android:orientation="horizontal">
-
-
-            <Button
-                android:id="@+id/btn_beli"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Beli" />
-        </LinearLayout>
+                android:background="@drawable/custom_border"
+                android:orientation="horizontal">
 
+                <LinearLayout
+                    android:layout_width="129dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_border"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txt_pd_kelipatan_transaksiTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="18dp"
+                        android:text="Kelipatan"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txt_pd_kelipatan_transaksiTitle2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginBottom="18dp"
+                        android:text="Transaksi"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txt_pd_kelipatan_transaksi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:text="Kelipatan_transaksi"
+                        android:textColor="#0000FF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_border"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="129dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_border"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txt_pd_penerbitTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginBottom="25dp"
+                        android:text="Penerbit"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txt_pd_penerbit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:text="Penerbit"
+                        android:textColor="#0000FF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_border"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="129dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_border"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txt_pd_kelipatanTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginBottom="25dp"
+                        android:text="Kelipatan"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/txt_pd_kelipatan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:inputType="number"
+                        android:text="0"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="right"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btn_plus"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1"
+                        android:text="+"
+                        android:backgroundTint="@color/black"/>
+
+                    <Button
+                        android:id="@+id/btn_minus"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1"
+                        android:text="-"
+                        android:backgroundTint="@color/black"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_border"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="129dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_border"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txt_pd_nominaltransaksiTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:text="Nominal"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txt_pd_nominaltransaksi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:text="0"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <Button
+                    android:id="@+id/btn_beli"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Beli"
+                    android:backgroundTint="@color/black"/>
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>

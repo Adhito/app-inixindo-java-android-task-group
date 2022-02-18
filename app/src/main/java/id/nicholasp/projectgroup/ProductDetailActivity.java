@@ -39,13 +39,14 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
     public static final String BALANCE_KEY = "balance_key";
     private int myValue = 0; // nilai awal
 
-    TextView txt_pd_seri_produk, txt_pd_nama_produk, txt_pd_nominaltransaksi, txt_pd_jatuh_tempo, txt_pd_minimum_transaksi, txt_pd_maksimum_transaksi, txt_pd_kelipatan_transaksi, txt_pd_penerbit;
+    TextView txt_pd_nama_produk, txt_pd_nominaltransaksi, txt_pd_jatuh_tempo, txt_pd_minimum_transaksi, txt_pd_maksimum_transaksi, txt_pd_kelipatan_transaksi, txt_pd_penerbit;
     EditText txt_kelipatan;
     Button btn_beli, btn_plus, btn_minus;
-    String id_produk, id, balance, kt_cal;
+    String id_produk, id, kt_cal;
     Toolbar toolbar;
     SharedPreferences sharedpreferences;
     Integer nom = 0, max_buy = 0;
+    Long balance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,10 +59,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        // txt_pd_seri_produk = findViewById(R.id.txt_pd_seri_produk);
         txt_pd_nama_produk = findViewById(R.id.txt_pd_nama_produk);
-        // txt_pd_nilai_unit = findViewById(R.id.txt_pd_nilai_unit);
-        // txt_pd_yield = findViewById(R.id.txt_pd_yield);
         txt_pd_jatuh_tempo = findViewById(R.id.txt_pd_jatuh_tempo);
         txt_pd_minimum_transaksi = findViewById(R.id.txt_pd_minimum_transaksi);
         txt_pd_maksimum_transaksi = findViewById(R.id.txt_pd_maksimum_transaksi);
@@ -69,9 +67,6 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         txt_pd_penerbit = findViewById(R.id.txt_pd_penerbit);
         txt_kelipatan = findViewById(R.id.txt_pd_kelipatan);
         txt_pd_nominaltransaksi = findViewById(R.id.txt_pd_nominaltransaksi);
-        // txt_pd_jenis_kupon = findViewById(R.id.txt_pd_jenis_kupon);
-        // txt_pd_mata_uang = findViewById(R.id.txt_pd_mata_uang);
-        // txt_pd_pembayaran_kupon = findViewById(R.id.txt_pd_pembayaran_kupon);
         btn_beli = findViewById(R.id.btn_beli);
         btn_plus = findViewById(R.id.btn_plus);
         btn_minus = findViewById(R.id.btn_minus);
@@ -80,7 +75,10 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         id_produk = receiveIntent.getStringExtra(Configuration.PGW_ID);
 
         sharedpreferences = getApplicationContext().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
-        balance = sharedpreferences.getString(BALANCE_KEY, null);
+        String bal = sharedpreferences.getString(BALANCE_KEY, null);
+        balance = Long.parseLong(bal.substring(0, bal.length() - 2));
+//        balance = Long.parseLong(sharedpreferences.getString(BALANCE_KEY, null));
+        Log.d("BALANCE", "validateCurrentBalance: " + balance);
 
         getJSON();
 
@@ -101,9 +99,6 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
                     myValue = Integer.parseInt(txt_kelipatan.getText().toString());
                     nom = myValue * Integer.valueOf(kt_cal);
                     txt_pd_nominaltransaksi.setText(formatRupiah(Double.parseDouble(Integer.toString(nom))));
-//                    field2.setText("");
-//                    Toast.makeText(ProductDetailActivity.this, txt_kelipatan.getText().toString(),
-//                            Toast.LENGTH_LONG).show();
             }
         });
 
@@ -146,16 +141,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         btn_beli.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(txt_kelipatan.getText().toString().trim().equals("0") || txt_kelipatan.getText().toString().trim().equals("")){
-                    Toast.makeText(ProductDetailActivity.this, "Tidak Dapat Beli 0 Unit", Toast.LENGTH_SHORT).show();
-                } if (nom > max_buy) {
-                    Toast.makeText(ProductDetailActivity.this, "Melebihi Maximum", Toast.LENGTH_SHORT).show();
-                } if (nom > Integer.parseInt(balance)) {
-                    Toast.makeText(ProductDetailActivity.this, "Saldo Tidak Cukup", Toast.LENGTH_SHORT).show();
-                }else {
-                    confirmBuyProduct();
-                }
-
+                confirmBuyProduct();
             }
         });
     }
@@ -204,10 +190,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
             JSONArray result = jsonObject.getJSONArray(Configuration.TAG_JSON_ARRAY);
             JSONObject object = result.getJSONObject(0);
 
-            // String seri_produk = object.getString("seri_produk");
             String nama_produk = object.getString("nama_produk");
-            // String nilai_unit = object.getString("nilai_unit");
-            // String yield = object.getString("yield");
             String jatuh_tempo = object.getString("jatuh_tempo");
             String minimum_transaksi = object.getString("minimum_transaksi");
             String maksimum_transaksi = object.getString("maksimum_transaksi");
@@ -215,23 +198,14 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
             kt_cal = kelipatan_transaksi;
             String kt_cal = object.getString("kelipatan_transaksi");
             String penerbit = object.getString("penerbit");
-            // String jenis_kupon = object.getString("jenis_kupon");
-            // String mata_uang = object.getString("mata_uang");
-            // String pembayaran_kupon = object.getString("pembayaran_kupon");
 
-            // txt_pd_seri_produk.setText(seri_produk);
             txt_pd_nama_produk.setText(nama_produk);
-            // txt_pd_nilai_unit.setText(nilai_unit);
-            // txt_pd_yield.setText(yield);
             txt_pd_jatuh_tempo.setText(jatuh_tempo);
             txt_pd_minimum_transaksi.setText(formatRupiah(Double.parseDouble(minimum_transaksi)));
             txt_pd_maksimum_transaksi.setText(formatRupiah(Double.parseDouble(maksimum_transaksi)));
             max_buy = Integer.parseInt(maksimum_transaksi);
             txt_pd_kelipatan_transaksi.setText(formatRupiah(Double.parseDouble(kelipatan_transaksi)));
             txt_pd_penerbit.setText(penerbit);
-            // txt_pd_jenis_kupon.setText(jenis_kupon);
-            // txt_pd_mata_uang.setText(mata_uang);
-            // txt_pd_pembayaran_kupon.setText(pembayaran_kupon);
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -254,8 +228,6 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
 
 
         final double total_transaction = nom;
-        final double current_balance = Integer.parseInt(balance);
-
 
         // Show confirmation alert dialogue
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -276,6 +248,15 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
     }
 
     private void validateCurrentBalance() {
+        if(txt_kelipatan.getText().toString().trim().equals("0") || txt_kelipatan.getText().toString().trim().equals("")){
+            Toast.makeText(ProductDetailActivity.this, "Tidak Dapat Beli 0 Unit", Toast.LENGTH_SHORT).show();
+        } else if (nom > max_buy) {
+            Toast.makeText(ProductDetailActivity.this, "Melebihi Maximum", Toast.LENGTH_SHORT).show();
+        } else if (nom > balance) {
+            Toast.makeText(ProductDetailActivity.this, "Saldo Tidak Cukup", Toast.LENGTH_SHORT).show();
+        }else {
+            buyProduct();
+        }
 //        sharedpreferences = getApplicationContext().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
 //        balance = sharedpreferences.getString(BALANCE_KEY, null);
 //
@@ -289,7 +270,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
 //        }
 //        else {
 //        }
-        buyProduct();
+//        buyProduct();
     }
 
     private void buyProduct() {
