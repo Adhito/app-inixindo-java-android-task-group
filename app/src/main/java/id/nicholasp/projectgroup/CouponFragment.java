@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -41,6 +42,7 @@ public class CouponFragment extends Fragment {
     ListView listview;
     SharedPreferences sharedpreferences;
     EditText search;
+    ImageView img;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -89,6 +91,7 @@ public class CouponFragment extends Fragment {
 
         listview = view.findViewById(R.id.listViewCoupon);
         search = view.findViewById(R.id.txt_search);
+        img = view.findViewById(R.id.imageView);
         getJsonData();
 
         search.addTextChangedListener(new TextWatcher() {
@@ -216,8 +219,16 @@ public class CouponFragment extends Fragment {
 
         listview.setAdapter(adapter);
 
+        if (adapter.isEmpty()) {
+            img.setVisibility(View.VISIBLE);
+        }
+        else {
+            img.setVisibility(View.GONE);
+        }
+
 
     }
+
     private String formatRupiah(Double number){
         Locale localeID = new Locale("in", "ID");
         NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);

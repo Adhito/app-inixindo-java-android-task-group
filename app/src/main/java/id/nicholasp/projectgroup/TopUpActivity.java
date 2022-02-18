@@ -32,7 +32,7 @@ public class TopUpActivity extends AppCompatActivity {
     String myStr, balance, get_balance,bal, val_balance = "";
     SharedPreferences sharedpreferences;
     EditText add_balance;
-    Button btn_topup_add, btn_topup_cancel;
+    Button btn_topup_add, btn_topup_cancel, btn_onemil, btn_fivemil, btn_tenmil, btn_fiftymil, btn_clear;
     Long balance_session;
 
     @Override
@@ -44,6 +44,11 @@ public class TopUpActivity extends AppCompatActivity {
         add_balance = findViewById(R.id.add_balance);
         btn_topup_add = findViewById(R.id.btn_topup_add);
         btn_topup_cancel = findViewById(R.id.btn_topup_cancel);
+        btn_onemil = findViewById(R.id.btn_onemil);
+        btn_fivemil = findViewById(R.id.btn_fivemil);
+        btn_tenmil = findViewById(R.id.btn_tenmil);
+        btn_fiftymil = findViewById(R.id.btn_fiftymil);
+        btn_clear = findViewById(R.id.btn_clear);
 
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         myStr = sharedpreferences.getString(ID_KEY, null);
@@ -54,6 +59,41 @@ public class TopUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        btn_onemil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                add_balance.setText("1,000,000");
+            }
+        });
+
+        btn_fivemil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                add_balance.setText("5,000,000");
+            }
+        });
+
+        btn_tenmil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                add_balance.setText("10,000,000");
+            }
+        });
+
+        btn_fiftymil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                add_balance.setText("50,000,000");
+            }
+        });
+
+        btn_clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                add_balance.setText("");
             }
         });
 

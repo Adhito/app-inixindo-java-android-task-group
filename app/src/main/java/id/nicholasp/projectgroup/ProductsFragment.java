@@ -1,7 +1,5 @@
 package id.nicholasp.projectgroup;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,12 +13,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -28,15 +25,13 @@ import org.json.JSONObject;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 
 public class ProductsFragment extends Fragment {
-    private ProgressDialog loading;
     String JSON_STRING, search_txt;
     ListView listview;
-    Button btn_beli;
     EditText search;
+    ImageView img;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,6 +42,7 @@ public class ProductsFragment extends Fragment {
 
         listview = view.findViewById(R.id.listViewProduct);
         search = view.findViewById(R.id.txt_search);
+        img = view.findViewById(R.id.imageView);
         getJsonData();
 
         search.addTextChangedListener(new TextWatcher() {
@@ -190,6 +186,13 @@ public class ProductsFragment extends Fragment {
         );
 
         listview.setAdapter(adapter);
+
+        if (adapter.isEmpty()) {
+            img.setVisibility(View.VISIBLE);
+        }
+        else {
+            img.setVisibility(View.GONE);
+        }
 
 
     }
