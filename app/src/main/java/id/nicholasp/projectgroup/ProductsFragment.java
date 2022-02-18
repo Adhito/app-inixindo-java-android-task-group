@@ -37,7 +37,6 @@ public class ProductsFragment extends Fragment {
     ListView listview;
     Button btn_beli;
     EditText search;
-    String url = "http://172.20.10.3/api_task_group/produk/get_all_produk_search.php?search_txt=";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -137,7 +136,7 @@ public class ProductsFragment extends Fragment {
             @Override
             protected String doInBackground(Void... voids) {
                 HttpHandler handler = new HttpHandler();
-                String result = handler.sendGetResponse(url, str_ct);
+                String result = handler.sendGetResponse(Configuration.URL_GET_ALL_PRODUCT_SEARCH, str_ct);
                 return result;
             }
 
