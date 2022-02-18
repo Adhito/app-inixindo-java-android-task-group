@@ -7,14 +7,14 @@
 	require_once('../koneksi.php');
 	
 	//Membuat SQL Query
-	$sql = "SELECT seri_produk, yield*harga_unit*jumlah_unit/100 AS kupon, tgl_kupon
-			FROM produk p JOIN beli b 
-			ON p.id_produk = b.id_produk
-			JOIN kupon k
-			ON k.id_produk = p.id_produk
-			WHERE b.id_detail_user=$id_detail_user
-			ORDER by 2;";
-	
+	$sql = "SELECT seri_produk, yield*harga_unit*jumlah_unit/100 as kupon, tgl_kupon
+			from kupon k join produk p
+			on k.id_produk = p.id_produk
+			join beli b
+			on k.id_beli = b.id_beli
+			where b.id_detail_user=$id_detail_user
+			order by 3;";
+			
 	//Mendapatkan Hasil
 	$r = mysqli_query($con,$sql);
 	
