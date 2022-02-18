@@ -49,12 +49,18 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
         Log.d("data: ", id_detail + "-" + nama+"-"+sid+"-"+email+"-"+hp);
 
-        binding.etSid.setText(sid);
         binding.etNama.setText(nama);
         binding.etEmail.setText(email);
         binding.etHp.setText(hp);
 
-        binding.btnUProfile.setOnClickListener(new View.OnClickListener() {
+        binding.btnProfileCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        binding.btnUpdateProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 get_nama = binding.etNama.getText().toString().trim();

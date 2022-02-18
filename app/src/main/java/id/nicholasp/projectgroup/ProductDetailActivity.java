@@ -143,7 +143,15 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         btn_beli.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                confirmBuyProduct();
+                if(txt_kelipatan.getText().toString().trim().equals("0") || txt_kelipatan.getText().toString().trim().equals("")){
+                    Toast.makeText(ProductDetailActivity.this, "Tidak Dapat Beli 0 Unit", Toast.LENGTH_SHORT).show();
+                } if (Long.parseLong(txt_pd_maksimum_transaksi.getText().toString()) > nom) {
+                    Toast.makeText(ProductDetailActivity.this, "Melebihi Maximum", Toast.LENGTH_SHORT).show();
+                }else {
+
+                    confirmBuyProduct();
+                }
+
             }
         });
     }

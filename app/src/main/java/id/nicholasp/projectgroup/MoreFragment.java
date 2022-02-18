@@ -29,7 +29,7 @@ public class MoreFragment extends Fragment {
         cv_top_up = view.findViewById(R.id.cv_top_up);
         cv_about_us = view.findViewById(R.id.cv_about_us);
         cv_logout = view.findViewById(R.id.cv_logout);
-        cv_update = view.findViewById(R.id.cv_Update);
+        cv_update = view.findViewById(R.id.cv_update);
 
         cv_top_up.setOnClickListener(new View.OnClickListener() {
             @Override
