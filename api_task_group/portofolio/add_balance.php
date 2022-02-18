@@ -8,7 +8,7 @@
 		require_once('../koneksi.php');
 		
 		//Membuat SQL Query
-		$sql = "UPDATE detail_user SET balance = (balance + '$balance') WHERE id_detail_user = $id_detail_user";
+		$sql = "UPDATE detail_user SET balance = '$balance' WHERE id_detail_user = $id_detail_user";
 		
 		//Meng-update Database 
 		if(mysqli_query($con,$sql)){

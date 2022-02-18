@@ -7,10 +7,11 @@
         $sid = $_POST['sid'];
 		$nama  = $_POST['nama'];
         $email = $_POST['email'];
+        $no_hp = $_POST['no_hp'];
 		
 		//Pembuatan Syntax SQL
 		$sql = "INSERT INTO user (username,password) VALUES ('$username', MD5('$password'))";
-        $sql2 = "INSERT INTO detail_user (sid,nama,email,balance,id_user) VALUES ('$sid','$nama','$email','0', (SELECT MAX(id_user) FROM user))";
+        $sql2 = "INSERT INTO detail_user (sid,nama,email,no_hp,balance,id_user) VALUES ('$sid','$nama','$email','$no_hp', '0', (SELECT MAX(id_user) FROM user))";
         // $sql = "INSERT INTO detail_user (sid,nama,id_user) VALUES ('$sid','$nama','1')";
 		
 		//Import File Koneksi database
