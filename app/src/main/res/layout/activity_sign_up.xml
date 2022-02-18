@@ -148,7 +148,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:gravity="bottom"
+            android:padding="8dp"
             android:orientation="horizontal">
 
             <Button
@@ -157,18 +159,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:text="Register" />
+                android:text="Register"
+                android:backgroundTint="#000"/>
 
             <Button
                 android:id="@+id/btn_r_cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:layout_marginRight="30dp"
                 android:layout_weight="1"
                 android:backgroundTint="#FBF9F9"
                 android:text="CANCEL"
-                android:textColor="#673AB7" />
+                android:textColor="#000" />
         </LinearLayout>
 
     </LinearLayout>

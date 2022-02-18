@@ -87,9 +87,9 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="390dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp">
+           >
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_r_obligasi"
@@ -97,7 +97,9 @@
                 android:layout_height="70dp"
                 app:cardBackgroundColor="#FFFFFF"
                 app:cardElevation="6dp"
-                app:cardCornerRadius="12dp">
+                app:cardCornerRadius="12dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
 
                 <ImageView
                     android:id="@+id/imageView2"

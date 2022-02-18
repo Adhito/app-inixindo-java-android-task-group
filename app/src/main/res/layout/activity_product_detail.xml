@@ -25,8 +25,12 @@
             android:layout_height="match_parent"
             android:layout_marginTop="58dp"
             android:background="@drawable/cardviewstyle"
+            android:elevation="10dp"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:paddingTop="25dp"
+            android:paddingBottom="25dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -44,7 +48,7 @@
                     android:text="Nama_produk"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:fontFamily="sans-serif-black"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -62,22 +66,21 @@
                         android:text="Jatuh Tempo"
                         android:textAlignment="textEnd"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/txt_pd_jatuh_tempo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        android:layout_marginRight="10dp"
                         android:layout_marginTop="5dp"
+                        android:layout_marginRight="10dp"
                         android:gravity="end"
                         android:text="Jatuh Tempo"
                         android:textAlignment="textEnd"
-                        android:textColor="#FF0800"
+                        android:textColor="#000"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                      android:fontFamily="sans-serif-black" />
 
                 </LinearLayout>
 
@@ -103,8 +106,7 @@
                         android:layout_marginTop="18dp"
                         android:text="Minimum"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/txt_pd_minimum_transaksiTitle2"
@@ -114,8 +116,7 @@
                         android:layout_marginBottom="18dp"
                         android:text="Transaksi"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -132,7 +133,7 @@
                         android:text="Minimum_transaksi"
                         android:textColor="#FF0800"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"/>
 
                 </LinearLayout>
 
@@ -158,8 +159,7 @@
                         android:layout_marginTop="18dp"
                         android:text="Maksimum"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/txt_pd_maksimum_transaksiTitle2"
@@ -169,8 +169,7 @@
                         android:layout_marginBottom="18dp"
                         android:text="Transaksi"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -187,7 +186,7 @@
                         android:text="Maksimum_transaksi"
                         android:textColor="#FF0800"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"/>
 
                 </LinearLayout>
 
@@ -213,8 +212,7 @@
                         android:layout_marginTop="18dp"
                         android:text="Kelipatan"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/txt_pd_kelipatan_transaksiTitle2"
@@ -224,8 +222,7 @@
                         android:layout_marginBottom="18dp"
                         android:text="Transaksi"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -242,7 +239,7 @@
                         android:text="Kelipatan_transaksi"
                         android:textColor="#0000FF"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"/>
 
                 </LinearLayout>
 
@@ -269,8 +266,7 @@
                         android:layout_marginBottom="25dp"
                         android:text="Penerbit"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -285,9 +281,9 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
                         android:text="Penerbit"
-                        android:textColor="#0000FF"
+                        android:textColor="#000"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"/>
 
                 </LinearLayout>
 
@@ -296,7 +292,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:background="@drawable/custom_border"
                 android:orientation="horizontal">
 
@@ -315,21 +310,20 @@
                         android:layout_marginBottom="25dp"
                         android:text="Kelipatan"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="20dp"
                     android:orientation="vertical">
 
                     <EditText
                         android:id="@+id/txt_pd_kelipatan"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
                         android:inputType="number"
                         android:text="0"
                         android:textColor="@color/black"
@@ -350,8 +344,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="15dp"
                         android:layout_weight="1"
+                        android:backgroundTint="@color/white"
                         android:text="+"
-                        android:backgroundTint="@color/black"/>
+                        android:textColor="#121111" />
 
                     <Button
                         android:id="@+id/btn_minus"
@@ -359,8 +354,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="15dp"
                         android:layout_weight="1"
+                        android:backgroundTint="@color/white"
                         android:text="-"
-                        android:backgroundTint="@color/black"/>
+                        android:textAllCaps="true"
+
+                        android:textColor="#0E0E0E" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -386,8 +384,7 @@
                         android:layout_marginBottom="15dp"
                         android:text="Nominal"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -410,23 +407,28 @@
                 </LinearLayout>
 
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:orientation="horizontal"
+                android:padding="20dp">
 
                 <Button
                     android:id="@+id/btn_beli"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:text="Beli"
-                    android:backgroundTint="@color/black"/>
+                    android:backgroundTint="#FBB034"
+                    android:elevation="10dp"
+                    android:textSize="18sp"
+                    android:textColor="#000"/>
             </LinearLayout>
 
         </LinearLayout>
+
     </LinearLayout>
+
+
 
 </RelativeLayout>
