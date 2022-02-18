@@ -29,10 +29,11 @@ public class TopUpActivity extends AppCompatActivity {
     public static final String ID_KEY = "id_key";
     public static final String BALANCE_KEY = "balance_key";
 
-    String myStr, balance, get_balance,balance_session, val_balance = "";
+    String myStr, balance, get_balance,bal, val_balance = "";
     SharedPreferences sharedpreferences;
     EditText add_balance;
     Button btn_topup_add, btn_topup_cancel;
+    Long balance_session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +47,8 @@ public class TopUpActivity extends AppCompatActivity {
 
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         myStr = sharedpreferences.getString(ID_KEY, null);
-        balance_session = sharedpreferences.getString(BALANCE_KEY, null);
+        bal = sharedpreferences.getString(BALANCE_KEY, null);
+        balance_session = Long.parseLong(bal.substring(0, bal.length() - 2));
 
         btn_topup_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,9 +100,9 @@ public class TopUpActivity extends AppCompatActivity {
                     NumberFormat formatter = NumberFormat.getCurrencyInstance();
                     formatter.setMaximumFractionDigits(0);
                     String formatted = formatter.format((parsed)).toString().replaceAll("£", "");
-
+                    formatted = formatted.substring(1);
                     val_balance = formatted;
-                    add_balance.setText(formatted);
+                    add_balance.setText(val_balance);
                     add_balance.setSelection(formatted.length());
                     add_balance.addTextChangedListener(this);
                 }
@@ -132,7 +134,10 @@ public class TopUpActivity extends AppCompatActivity {
     }
 
     private void updateBalance() {
-        String total_balance = String.valueOf(Long.parseLong(balance_session) + Long.parseLong(balance));
+        Log.d("BALANCESESSION", "BalanceSession: " + balance_session);
+        Log.d("BALANCE", "Balance: " + balance);
+        String total_balance = String.valueOf(balance_session + Long.parseLong(balance));
+        Log.d("BALANCE", "Balance: " + total_balance);
         class UpdateBalance extends AsyncTask<Void, Void, String> {
             ProgressDialog loading;
 

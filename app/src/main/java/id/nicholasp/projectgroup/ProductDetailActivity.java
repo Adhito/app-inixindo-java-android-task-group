@@ -227,12 +227,12 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
     private void confirmBuyProduct() {
 
 
-        final double total_transaction = nom;
+//        final double total_transaction = nom;
 
         // Show confirmation alert dialogue
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Konfirmasi pembelian obligasi");
-        builder.setMessage("Total nominal : " + total_transaction);
+        builder.setMessage("Total nominal : " + formatRupiah(Double.parseDouble(Integer.toString(nom))));
         builder.setIcon(getResources().getDrawable(android.R.drawable.ic_input_add));
         builder.setCancelable(false);
         builder.setNegativeButton("Cancel", null);

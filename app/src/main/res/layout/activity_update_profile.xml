@@ -81,7 +81,8 @@
                             android:layout_height="wrap_content"
                             android:background="#FFFFFF"
                             android:elevation="10dp"
-                            android:hint="Handphone" />
+                            android:hint="Handphone"
+                            android:inputType="number"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
 
