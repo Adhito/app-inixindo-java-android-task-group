@@ -45,7 +45,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
     String id_produk, id, balance, kt_cal;
     Toolbar toolbar;
     SharedPreferences sharedpreferences;
-    Integer nom = 0;
+    Integer nom = 0, max_buy = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +78,9 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
 
         Intent receiveIntent = getIntent();
         id_produk = receiveIntent.getStringExtra(Configuration.PGW_ID);
+
+        sharedpreferences = getApplicationContext().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        balance = sharedpreferences.getString(BALANCE_KEY, null);
 
         getJSON();
 
@@ -145,10 +148,11 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
             public void onClick(View v) {
                 if(txt_kelipatan.getText().toString().trim().equals("0") || txt_kelipatan.getText().toString().trim().equals("")){
                     Toast.makeText(ProductDetailActivity.this, "Tidak Dapat Beli 0 Unit", Toast.LENGTH_SHORT).show();
-                } if (Long.parseLong(txt_pd_maksimum_transaksi.getText().toString()) > nom) {
+                } if (nom > max_buy) {
                     Toast.makeText(ProductDetailActivity.this, "Melebihi Maximum", Toast.LENGTH_SHORT).show();
+                } if (nom > Integer.parseInt(balance)) {
+                    Toast.makeText(ProductDetailActivity.this, "Saldo Tidak Cukup", Toast.LENGTH_SHORT).show();
                 }else {
-
                     confirmBuyProduct();
                 }
 
@@ -222,6 +226,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
             txt_pd_jatuh_tempo.setText(jatuh_tempo);
             txt_pd_minimum_transaksi.setText(formatRupiah(Double.parseDouble(minimum_transaksi)));
             txt_pd_maksimum_transaksi.setText(formatRupiah(Double.parseDouble(maksimum_transaksi)));
+            max_buy = Integer.parseInt(maksimum_transaksi);
             txt_pd_kelipatan_transaksi.setText(formatRupiah(Double.parseDouble(kelipatan_transaksi)));
             txt_pd_penerbit.setText(penerbit);
             // txt_pd_jenis_kupon.setText(jenis_kupon);
@@ -246,8 +251,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
     }
 
     private void confirmBuyProduct() {
-        sharedpreferences = getApplicationContext().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
-        balance = sharedpreferences.getString(BALANCE_KEY, null);
+
 
         final double total_transaction = nom;
         final double current_balance = Integer.parseInt(balance);
@@ -272,20 +276,20 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
     }
 
     private void validateCurrentBalance() {
-        sharedpreferences = getApplicationContext().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
-        balance = sharedpreferences.getString(BALANCE_KEY, null);
-
-        final double total_transaction = nom;
-        final double current_balance = Integer.parseInt(balance);
-
-        // With Validation
-        if(total_transaction > current_balance){
-            Toast.makeText(ProductDetailActivity.this, "Mohon maaf, balance anda tidak mencukupi", Toast.LENGTH_LONG).show();
-            Log.d("Balance Gagal", String.valueOf(current_balance));
-        }
-        else {
-            buyProduct();
-        }
+//        sharedpreferences = getApplicationContext().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+//        balance = sharedpreferences.getString(BALANCE_KEY, null);
+//
+//        final double total_transaction = nom;
+//        final double current_balance = Integer.parseInt(balance);
+//
+//        // With Validation
+//        if(total_transaction > current_balance){
+//            Toast.makeText(ProductDetailActivity.this, "Mohon maaf, balance anda tidak mencukupi", Toast.LENGTH_LONG).show();
+//            Log.d("Balance Gagal", String.valueOf(current_balance));
+//        }
+//        else {
+//        }
+        buyProduct();
     }
 
     private void buyProduct() {
