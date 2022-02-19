@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
 
@@ -96,9 +97,9 @@ public class LoginFormActivity extends AppCompatActivity {
             @Override
             protected void onPreExecute() { // sebelum proses
                 super.onPreExecute();
-                loading = ProgressDialog.show(LoginFormActivity.this,
-                        "Mengambil Data", "Harap Menunggu...",
-                        false, false);
+//                loading = ProgressDialog.show(LoginFormActivity.this,
+//                        "Mengambil Data", "Harap Menunggu...",
+//                        false, false);
             }
 
             @Override
@@ -119,7 +120,7 @@ public class LoginFormActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(String message) { // setelah proses
                 super.onPostExecute(message);
-                loading.dismiss();
+//                loading.dismiss();
                 JSON_STRING = message;
                 Log.d("DATA JSON: ", JSON_STRING);
                 //{"result":[]}
@@ -127,7 +128,11 @@ public class LoginFormActivity extends AppCompatActivity {
                 if (message.contains("Warning") || message.contains("error") || message.contains("[]") || message.equals("")  || message.equals(null)) {
                     Toast.makeText(LoginFormActivity.this, "Gagal Login", Toast.LENGTH_SHORT).show();
                 }else{
-                    Toast.makeText(LoginFormActivity.this, "Berhasil Login", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(LoginFormActivity.this, "Berhasil Login", Toast.LENGTH_LONG).show();
+                    Toast toast= Toast.makeText(LoginFormActivity.this,
+                            "Berhasil Login", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 200);
+                    toast.show();
                     loginBerhasil();
                 }
             }
@@ -147,7 +152,7 @@ public class LoginFormActivity extends AppCompatActivity {
         editor.apply();
 
         // starting new activity.
-        Intent i = new Intent(LoginFormActivity.this, MainActivity.class);
+        Intent i = new Intent(LoginFormActivity.this, LoadingActivity.class);
         i.putExtra("keyUser", user);
         startActivity(i);
         finish();

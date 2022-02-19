@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -155,12 +156,12 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(
-                        ProductDetailActivity.this,
-                        "Mengambil data obligasi",
-                        "Harap Menunggu ...",
-                        false,
-                        false);
+//                loading = ProgressDialog.show(
+//                        ProductDetailActivity.this,
+//                        "Mengambil data obligasi",
+//                        "Harap Menunggu ...",
+//                        false,
+//                        false);
             }
 
             // Override doInBackground (Ctrl + O select the doInBackground)
@@ -176,7 +177,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
             @Override
             protected void onPostExecute(String message) {
                 super.onPostExecute(message);
-                loading.dismiss();
+//                loading.dismiss();
                 displayDetailData(message);
             }
         }
@@ -230,7 +231,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
 //        final double total_transaction = nom;
 
         // Show confirmation alert dialogue
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyDialogTheme);
         builder.setTitle("Konfirmasi pembelian obligasi");
         builder.setMessage("Total nominal : " + formatRupiah(Double.parseDouble(Integer.toString(nom))));
         builder.setIcon(getResources().getDrawable(android.R.drawable.ic_input_add));
@@ -291,11 +292,11 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(ProductDetailActivity.this,
-                        "Menyimpan Obligasi",
-                        "Harap Tunggu ...",
-                        false,
-                        false);
+//                loading = ProgressDialog.show(ProductDetailActivity.this,
+//                        "Menyimpan Obligasi",
+//                        "Harap Tunggu ...",
+//                        false,
+//                        false);
             }
 
             @Override
@@ -317,15 +318,20 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
-                loading.dismiss();
+//                loading.dismiss();
                 Log.d("Pesan", s);
+//                Toast.makeText(ProductDetailActivity.this, "Transaksi Berhasil", Toast.LENGTH_LONG).show();
+                Toast toast= Toast.makeText(ProductDetailActivity.this,
+                        "Transaksi Berhasil", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 200);
+                toast.show();
             }
         }
         BuyProduct buyProduct = new BuyProduct();
         buyProduct.execute();
 
         // Back to home after add process
-        startActivity(new Intent(ProductDetailActivity.this, MainActivity.class));
+        startActivity(new Intent(ProductDetailActivity.this, LoadingActivity.class));
 
     }
 

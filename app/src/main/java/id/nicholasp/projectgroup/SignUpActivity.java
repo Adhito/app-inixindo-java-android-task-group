@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
 
@@ -44,11 +45,23 @@ public class SignUpActivity extends AppCompatActivity {
 
                 String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
                 if (user.equals("") || pass.equals("") || sid.equals("") || nama.equals("") || email.equals("")) {
-                    Toast.makeText(SignUpActivity.this, "Semua Data Wajib Diisi", Toast.LENGTH_LONG).show();
+//                    Toast.makeText(SignUpActivity.this, "Semua Data Wajib Diisi", Toast.LENGTH_LONG).show();
+                    Toast toast= Toast.makeText(SignUpActivity.this,
+                            "Semua Data Wajib Diisi", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 200);
+                    toast.show();
                 } else if (!(pass.equals(re_pass))) {
-                    Toast.makeText(SignUpActivity.this, "Password dan Re-Password \nHarus Sama", Toast.LENGTH_LONG).show();
+//                    Toast.makeText(SignUpActivity.this, "Password dan Re-Password \nHarus Sama", Toast.LENGTH_LONG).show();
+                    Toast toast= Toast.makeText(SignUpActivity.this,
+                            "Password dan Re-Password \nHarus Sama", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 200);
+                    toast.show();
                 } else if (!(email.matches(emailPattern) && email.length() > 0)) {
-                    Toast.makeText(SignUpActivity.this, "Format Email Salah", Toast.LENGTH_LONG).show();
+//                    Toast.makeText(SignUpActivity.this, "Format Email Salah", Toast.LENGTH_LONG).show();
+                    Toast toast= Toast.makeText(SignUpActivity.this,
+                            "Format Email Salah", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 200);
+                    toast.show();
                 } else {
                     cekUser();
                 }
@@ -69,14 +82,11 @@ public class SignUpActivity extends AppCompatActivity {
 //        final String nama = binding.txtRName.getText().toString().trim();
 
         class SimpanData extends AsyncTask<Void, Void, String> {
-            ProgressDialog loading;
+//            ProgressDialog loading;
 
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(SignUpActivity.this,
-                        "Menyimpan Data", "Harap tunggu...",
-                        false, false);
             }
 
             @Override
@@ -98,9 +108,8 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(String message) {
                 super.onPostExecute(message);
-                loading.dismiss();
-                Toast.makeText(SignUpActivity.this, "pesan: " + message,
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignUpActivity.this, "Sign Up Berhasil",
+                        Toast.LENGTH_LONG).show();
                 clearText();
                 Intent myIntent = new Intent(SignUpActivity.this, LoginFormActivity.class);
                 myIntent.putExtra("keyName", "materi");
@@ -128,9 +137,9 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             protected void onPreExecute() { // sebelum proses
                 super.onPreExecute();
-                loading = ProgressDialog.show(SignUpActivity.this,
-                        "Mengambil Data", "Harap Menunggu...",
-                        false, false);
+//                loading = ProgressDialog.show(SignUpActivity.this,
+//                        "Mengambil Data", "Harap Menunggu...",
+//                        false, false);
             }
 
             @Override
@@ -148,7 +157,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(String message) { // setelah proses
                 super.onPostExecute(message);
-                loading.dismiss();
+//                loading.dismiss();
                 JSON_STRING = message;
                 Log.d("DATA JSON: ", JSON_STRING);
                 if (!(message.contains("Warning") || message.contains("error") || message.contains("[]"))) {

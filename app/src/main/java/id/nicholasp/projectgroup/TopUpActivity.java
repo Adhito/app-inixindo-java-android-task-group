@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -157,8 +158,8 @@ public class TopUpActivity extends AppCompatActivity {
     private void confirmTopUp() {
         String text_balance = add_balance.getText().toString().trim();
         //Confirmation altert dialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Message");
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyDialogTheme);
+        builder.setTitle("Confirm Top Up");
         builder.setMessage("Nominal Top Up: Rp. " + text_balance);
         builder.setIcon(getResources().getDrawable(android.R.drawable.ic_dialog_info));
         builder.setCancelable(false);
@@ -184,9 +185,9 @@ public class TopUpActivity extends AppCompatActivity {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(TopUpActivity.this,
-                        "Mengubah Data", "Harap Tunggu",
-                        false, false);
+//                loading = ProgressDialog.show(TopUpActivity.this,
+//                        "Mengubah Data", "Harap Tunggu",
+//                        false, false);
             }
 
             @Override
@@ -203,14 +204,17 @@ public class TopUpActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
-                loading.dismiss();
-                ;
+//                loading.dismiss();
 
                 Fragment fragment = null;
 
-                Toast.makeText(TopUpActivity.this,
-                        "Pesan: " + s, Toast.LENGTH_SHORT).show();
-                Intent myIntent = new Intent(TopUpActivity.this, MainActivity.class);
+//                Toast.makeText(TopUpActivity.this,
+//                        "Berhasil Top Up", Toast.LENGTH_LONG).show();
+                Toast toast= Toast.makeText(TopUpActivity.this,
+                        "Berhasil Top Up", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 200);
+                toast.show();
+                Intent myIntent = new Intent(TopUpActivity.this, LoadingActivity.class);
                 startActivity(myIntent);
 
             }

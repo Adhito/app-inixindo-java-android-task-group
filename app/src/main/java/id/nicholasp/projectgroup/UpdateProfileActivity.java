@@ -13,6 +13,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -81,9 +82,9 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
     private void confirmUpdate() {
         //Confirmation altert dialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Message");
-        builder.setMessage("Are you sure want to update this data? ");
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyDialogTheme);
+        builder.setTitle("Confirm Update");
+        builder.setMessage("Are you sure to update this data?");
         builder.setIcon(getResources().getDrawable(android.R.drawable.ic_dialog_info));
         builder.setCancelable(false);
         builder.setNegativeButton("Cancel", null);
@@ -104,9 +105,9 @@ public class UpdateProfileActivity extends AppCompatActivity {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(UpdateProfileActivity.this,
-                        "Mengubah Data", "Harap Tunggu",
-                        false, false);
+//                loading = ProgressDialog.show(UpdateProfileActivity.this,
+//                        "Mengubah Data", "Harap Tunggu",
+//                        false, false);
             }
 
             @Override
@@ -126,11 +127,15 @@ public class UpdateProfileActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
-                loading.dismiss();
+//                loading.dismiss();
                 Log.d("msg:",s);
 
-                Toast.makeText(UpdateProfileActivity.this, "Pesan: " + s, Toast.LENGTH_SHORT).show();
-                Intent myIntent = new Intent(UpdateProfileActivity.this, MainActivity.class);
+//                Toast.makeText(UpdateProfileActivity.this, "Berhasil Update", Toast.LENGTH_LONG).show();
+                Toast toast= Toast.makeText(UpdateProfileActivity.this,
+                        "Berhasil Update", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 200);
+                toast.show();
+                Intent myIntent = new Intent(UpdateProfileActivity.this, LoadingActivity.class);
                 startActivity(myIntent);
 
             }

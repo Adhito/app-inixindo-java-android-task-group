@@ -60,7 +60,7 @@ public class MoreFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.MyDialogTheme);
                 builder.setTitle("Message");
                 builder.setMessage("Are you sure want Logout ");
                 builder.setIcon(getResources().getDrawable(android.R.drawable.ic_dialog_info));
