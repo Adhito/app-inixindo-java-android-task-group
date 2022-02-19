@@ -42,9 +42,9 @@
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_weight="0"
-                    android:text="Amount        :"
+                    android:text="Amount      :"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -53,10 +53,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_marginLeft="5dp"
                     android:ems="10"
                     android:inputType="number"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/btn_clear"
+                    android:theme="@style/Theme.CustomButton1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/close" />
+
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -66,26 +78,109 @@
                 android:orientation="horizontal"
                 android:padding="20dp">
 
-                <Button
-                    android:id="@+id/btn_topup_add"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:backgroundTint="#FFC600"
-                    android:elevation="5dp"
-                    android:text="Confirm"
-                    android:textColor="#000000" />
+                    android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/btn_topup_cancel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#F6F6F6"
-                    android:text="BATAL"
-                    android:textColor="#0B0B0B" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btn_onemil"
+                            android:theme="@style/Theme.CustomButton2"
+                            android:background="@drawable/btn_topup"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:textSize="12sp"
+                            android:text="Rp1.000.000,00"
+                            android:textColor="@color/black"
+                            android:backgroundTint="#e49821"/>
+
+                        <Button
+                            android:id="@+id/btn_fivemil"
+                            android:theme="@style/Theme.CustomButton2"
+                            android:background="@drawable/btn_topup"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:textSize="12sp"
+                            android:text="Rp5.000.000,00"
+                            android:textColor="@color/black"
+                            android:backgroundTint="#e49821"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btn_tenmil"
+                            android:theme="@style/Theme.CustomButton2"
+                            android:background="@drawable/btn_topup"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:textSize="12sp"
+                            android:text="Rp10.000.000,00"
+                            android:textColor="@color/black"
+                            android:backgroundTint="#e49821"/>
+
+                        <Button
+                            android:id="@+id/btn_fiftymil"
+                            android:theme="@style/Theme.CustomButton2"
+                            android:background="@drawable/btn_topup"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:textSize="12sp"
+                            android:text="Rp50.000.000,00"
+                            android:textColor="@color/black" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="bottom"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btn_topup_add"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="#FFC600"
+                            android:elevation="5dp"
+                            android:text="Confirm"
+                            android:textColor="#000000" />
+
+                        <Button
+                            android:id="@+id/btn_topup_cancel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="#F6F6F6"
+                            android:text="BATAL"
+                            android:textColor="#0B0B0B" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
 
